@@ -1,0 +1,212 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap');
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+[x-cloak] {
+    display: none;
+}
+@layer base {
+    html {
+      font-family: "Poppins, sans-serif", system-ui, sans-serif;
+    }
+    .fa-google {
+      background: conic-gradient(from -45deg, #ea4335 110deg, #4285f4 90deg 180deg, #34a853 180deg 270deg, #fbbc05 270deg) 73% 55%/150% 150% no-repeat;
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      -webkit-text-fill-color: transparent;
+    }
+    input {
+      box-sizing: border-box;
+      border-width: 0;
+      border-style: solid;
+      border-color: #e2e8e8;
+      /* Otros estilos que desees agregar */
+    }
+    input::placeholder {
+      color: #9ca3af; /* Color personalizado para el placeholder */
+      opacity: 1; /* Para asegurar que el color se aplique correctamente */
+    }
+    
+    input:-ms-input-placeholder { /* Internet Explorer 10-11 */
+        color: #9ca3af;
+    }
+    
+    input::-ms-input-placeholder { /* Microsoft Edge */
+        color: #9ca3af;
+    }
+
+    .custom-button {
+      /* Estilos personalizados para tu botón */
+      background-color: #ffffff; /* Color de fondo personalizado */
+      color: #9ca3af; /* Color de texto personalizado */
+      border: 2px solid #dbdbdb; /* Borde personalizado */
+      padding: 8px 16px; /* Relleno personalizado */
+      border-radius: 4px; /* Bordes redondeados */
+      cursor: pointer; /* Cambia el cursor al pasar por encima */
+      transition: background-color 0.3s, border-color 0.3s, color 0.3s; /* Transiciones suaves */
+    }
+    
+    .custom-button:hover {
+      background-color: #e8fcfa; /* Cambia el color de fondo al pasar el mouse */
+      border-color: #dbdbdbad; /* Cambia el color del borde al pasar el mouse */
+      color: #cdd1d6; /* Color de texto personalizado */
+    }
+
+    /* Estilos para el menú lateral */
+    .sidebar {
+      width: 240px;
+      background-color: #4b5563; /* Color de fondo del menú lateral */
+    }
+
+    /* Estilos para el contenido principal */
+    .main-content {
+      flex-grow: 1;
+      background-color: #f3f4f6; /* Color de fondo del contenido principal */
+    }
+    .letra_custom{
+      font-family:Poppins, sans-serif !important;
+      font-size:14px !important;
+      font-weight:600 !important;
+    }
+    .border-b-0 {
+      border-bottom-width: 0 !important; /* Cambiar el ancho del borde a 0 para eliminar la línea de subrayado */
+    }
+
+    .border-0-0 {
+      border-width: 0 !important; /* Cambiar el ancho del borde a 0 para eliminar la línea de subrayado */
+    }
+
+    .menu-content.hidden {
+      display: none;
+    }
+    .menu-content.block {
+        display: block;
+    }
+    .btn-minimize {
+        background-color: transparent;
+        border: none;
+        font-size: 14px;
+        cursor: pointer;
+    }
+    .ajuste{
+      min-width: fit-content;
+    }
+
+    .correo_vis{
+      display: block;
+    }
+    @media (max-width: 1150px) {
+      .correo_vis {
+          display: none;
+      }
+    }
+    .logo_pincipal{
+      display: block;
+    }
+    @media (max-width: 650px) {
+      .logo_pincipal {
+          display: none;
+      }
+    }
+    
+    .contenedor_Menu {
+      width: 22%;
+    }
+    @media (max-width: 650px) {
+      .contenedor_Menu {
+        width: 62px !important;
+      }
+    }
+    .ajuste_imagen{
+      width: 3rem;
+      height: 3rem;
+    }
+    /*css eventos*/
+    .eventos{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        padding: 0.5rem 1rem 0.5rem 1rem;
+        width: 398px;
+        gap: 1rem;
+        border-style: solid;
+        border: 2px;
+        border-color: var();
+    
+    
+        
+    
+    }
+    .card_eventos{
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        align-items: left;
+    
+        border: 2px;
+        border-style: solid;
+        border-color: var(--border-color);
+    
+        
+        width: 100%;
+        
+        
+    
+    
+    
+    }
+    .header{
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+        padding: 16px;
+        
+        
+        width: 100%;
+        height: auto; 
+        background: var(--background-secondary-color);
+    }
+    .card_eventos_details{
+        display: flex;
+        flex-direction: row;
+        align-items: flex-start;
+    
+        gap: 0.5rem;
+    }
+    .card_eventos_container{
+        display: flex;
+        flex-direction: row;
+        align-items: top;
+        justify-content: space-between;
+        
+    
+    }
+    .card_eventos_img{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    
+        width: 100%;
+        height: 10rem;
+        background-repeat: no-repeat;
+        background-size: cover;
+        background-position: center center;
+        background: url(/img_conecta/Frame\ 24.png);
+    }
+    .card_eventos_wrapper{
+        display: flex;
+        flex-direction: column;
+        align-items: top;
+        justify-content: space-between;
+        padding: 2rem;
+        gap: 2rem;
+    
+    }
+    /*css eventos fin*/
+
+  }
