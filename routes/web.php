@@ -6,7 +6,7 @@ use App\Http\Controllers\UsuarioController;
 use App\Http\Controllers\EventosController;
 use App\Http\Controllers\CompanysController;
 
-Route::redirect('/', '/login');
+Route::redirect('/', '/eventos');
 
 Route::middleware([
     'auth:sanctum',

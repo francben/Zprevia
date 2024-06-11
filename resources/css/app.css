@@ -1,9 +1,11 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap');
+@import "../../node_modules/toastr/build/toastr.min.css";
+@import "../../node_modules/sweetalert2/dist/sweetalert2.css";
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-@tailwindcss ui;
+/*@tailwindcss ui;*/
 
 [x-cloak] {
     display: none;
@@ -12,6 +14,27 @@
     html {
       font-family: "Poppins, sans-serif", system-ui, sans-serif;
     }
+    /*Estilos de notificaciones*/
+    .swal2-popup {
+      @apply bg-white text-gray-800 rounded-lg shadow-lg p-6;
+    }
+    
+    .swal2-title {
+      @apply text-2xl font-bold mb-4;
+    }
+    
+    .swal2-content {
+      @apply text-gray-600 mb-6;
+    }
+    
+    .swal2-confirm {
+      @apply bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded;
+    }
+    
+    .swal2-cancel {
+      @apply bg-gray-300 hover:bg-gray-400 text-gray-800 font-bold py-2 px-4 rounded ml-2;
+    }
+    /*---------------------------------------------------------------------------*/
     .fa-google {
       background: conic-gradient(from -45deg, #ea4335 110deg, #4285f4 90deg 180deg, #34a853 180deg 270deg, #fbbc05 270deg) 73% 55%/150% 150% no-repeat;
       -webkit-background-clip: text;
@@ -99,7 +122,7 @@
     .correo_vis{
       display: block;
     }
-    @media (max-width: 1150px) {
+    @media (max-width: 1015px) {
       .correo_vis {
           display: none;
       }
@@ -114,7 +137,14 @@
     }
     
     .contenedor_Menu {
-      width: 22%;
+      width: 20%;
+      max-width: 14rem;
+    }
+
+    @media (max-width: 790px) {
+      .contenedor_Menu {
+        width: 175px !important;
+      }
     }
     @media (max-width: 650px) {
       .contenedor_Menu {
@@ -254,6 +284,10 @@
       border-top: none;
       border-right: none;
       border-left: none;
+    }
+    .w-imagen{
+      width: 46px;
+      height: 46px;
     }
     
     /* Estilo para el borde inferior cuando el input tiene foco */

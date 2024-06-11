@@ -1,6 +1,6 @@
 <nav x-data="{ open: false }" class="bg-white ml-1 pt-2 w-full">
     <!-- Logo -->
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex justify-between items-center h-16">
+    <div class="max-w-7xl mx-auto px-2 flex justify-between items-center h-16">
         <div class="flex items-center">
             <a href="{{ route('eventos.index') }}">
                 <x-application-mark class="block h-9 w-auto" />
@@ -9,26 +9,26 @@
     </div>
     <hr />
     <!-- Datos de Usuario -->
-    <div class="hidden max-w-7xl mx-auto px-2 sm:px-2 lg:px-4 justify-between items-center h-16 mt-4 ml-4 sm:flex sm:flex-col sm:items-start ml-3 sm:space-y-4 sm:mt-4">
+    <div class="hidden max-w-7xl mx-auto justify-between items-center h-16 mt-4 ml-4 sm:flex sm:flex-col sm:items-start ml-3 sm:space-y-4 sm:mt-4">
         <div class=" flex items-center space-x-4">
             @if (Laravel\Jetstream\Jetstream::managesProfilePhotos())
-                <div class="rounded-full object-cover w-13 h-13">
+                <div class="rounded-full object-cover w-12 h-12">
                     <img class="h-full w-full rounded-full object-cover" src="{{ Auth::user()->profile_photo_url }}" alt="{{ Auth::user()->name }}" />
                 </div>
             @else
-                <div class="w-12 h-12">
+                <div class="w-imagen">
                     <img class="h-full w-full rounded-full object-cover" src=".\assets\imagenes\avatar_Zprevia.png" alt="{{ Auth::user()->name }}" />
                 </div>
             @endif
             <div>
-                <div class="font-medium" style="font-family:Poppins, sans-serif;font-size:17px;font-weight:600;">{{ Auth::user()->name }}</div>
+                <div class="font-medium" style="font-family:Poppins, sans-serif;font-size:14px;font-weight:600;">{{ Auth::user()->name }}</div>
                 <div class="correo_vis text-sm text-gray-400" style="font-family:'Poppins', sans-serif;font-size:10px;font-weight: 800;letter-spacing: 0.5px;">{{ Auth::user()->email }}</div>
             </div>
         </div>
     </div>
 
     <!-- Navigation Links -->
-    <div class="max-w-7xl mx-auto px-2 sm:px-2 lg:px-4 flex justify-between h-16">
+    <div class="max-w-7xl mx-auto px-2 flex justify-between h-16">
         <div class="hidden sm:flex sm:flex-col sm:items-start ml-3 sm:space-y-4 sm:mt-4">
             <!-- Primer Menú -->
             @php

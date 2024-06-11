@@ -23,9 +23,10 @@ class EventosController extends Controller
     }
     public function activos()
     {
-        $eventosActivos = Event::where('active', true)->get();
-        return view('eventos.index', ['eventos' => $eventosActivos]);
-    }
+        $eventos = Event::where('active', true)->get();
+        session()->flash('success', 'Registro guardado correctamente.');
+        return view('eventos.index', compact('eventos'));
+        }
 
     public function participantes($id)
     {
