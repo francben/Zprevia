@@ -38,7 +38,7 @@
                             </div>
                             <div class="card_eventos_img" id="banner">
                                 <div class="logo_principal">
-                                    <img src="{{ asset('images/IMG-20240415-WA0021.jpg') }}" alt="Logo">
+                                    <img src="{{$event->banner}}" alt="Logo">
                                 </div>
                             </div>
                             <div class="card_eventos_wrapper">

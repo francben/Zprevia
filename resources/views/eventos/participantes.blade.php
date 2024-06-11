@@ -12,7 +12,7 @@
             @foreach([$event] as $env)
                 <div class="bg-white shadow-lg p-0 flex">
                     <div class="w-1/2 ">
-                        <img src="path-to-banner-image.png" alt="Conecta Empresarios 2024" class="w-full h-full object-cover">
+                        <img src="{{ $env->banner }}" alt="Conecta Empresarios 2024" class="w-full h-full object-cover">
                     </div>
                     <div class="w-1/2 p-4 relative">
                         <div class=" top-4 right-4">
@@ -23,8 +23,8 @@
                             <h3 class="text-2xl font-bold">{{$event->name}}{{$event->id}}</h3>
                         </div>
                         <div class="flex items-center mt-4">
-                            <div class="w-3/10 flex justify-end">
-                                <img src="path-to-logo.png" alt="Logo" class="h-16 w-16 rounded-full">
+                            <div class="flex justify-center items-center">
+                                <img src="{{$env->perfil}}" alt="Logo" class="rounded-full">
                             </div>
                             <div class="w-7/10">
                                 <p class="text-lg mt-2 flex items-center"><span class="material-icons">{{ \Carbon\Carbon::parse($event->date)->locale('es')->isoFormat('DD [de] MMMM [de] YYYY') }}</p>
@@ -39,9 +39,9 @@
                     </a>
                 </div>
             @endforeach
-            <div class="relative mt-6 grid grid-cols-1 gap-6 md:grid-cols-2">
+            <div class="relative mt-6 grid grid-cols-1 gap-6 md:grid-cols-2  ">
                 @foreach($participantes as $part)
-                <div class="participant-card blur bg-white p-4 rounded-lg shadow-md">
+                <div class="bg-white p-4 rounded-lg shadow-md ">
                     <div class="flex">
                         <div class="image-container w-3/10">
                             <img src="path-to-logo.png" alt="Logo" class="h-16 mr-4">

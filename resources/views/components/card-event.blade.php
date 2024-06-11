@@ -19,7 +19,7 @@
         <div class="card_eventos_wrapper">
             <div class="card_eventos_container flex items-center justify-between">
                 <div class="card_eventos_left flex items-center">
-                    <img id="logo" src="img/zprevia_logo.png" alt="Logo empresa" width="50" height="50" class="rounded-full">
+                    <img id="logo" src="{{$profile}}" alt="Logo empresa" width="50" height="50" class="rounded-full">
                     <div class="ml-4">
                         <div class="card_eventos_details flex flex-col">
                             <p class="fecha_event" id="date">{{$fecha}}</p>

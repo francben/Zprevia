@@ -353,4 +353,70 @@
   right: 20px;
   z-index: 50; /* Asegúrate de que el botón esté por encima de otros elementos */
 }
+  .credit-card-form input {
+    font-family: Poppins, sans-serif;
+    font-size: 14px;
+  }
+  .credit-card-form .relative {
+    padding-left: 2.5rem;
+  }
+  .credit-card-form img {
+    display: inline;
+  }
+  .relative {
+    position: relative;
+}
+
+.flex {
+    display: flex;
+}
+
+.flex-col {
+    flex-direction: column;
+}
+
+.border-gris-300 {
+    border-color: #D1D5DB; /* Asegúrate de ajustar este color según tu necesidad */
+}
+
+.focus\:border-gris-500:focus {
+    border-color: #6B7280; /* Asegúrate de ajustar este color según tu necesidad */
+}
+
+.focus\:ring-gris-500:focus {
+    outline-color: #6B7280; /* Asegúrate de ajustar este color según tu necesidad */
+}
+
+.w-full {
+    width: 100%;
+}
+
+.pl-3 {
+    padding-left: 0.75rem; /* 12px */
+}
+
+.pr-10 {
+    padding-right: 2.5rem; /* 40px */
+}
+
+.rounded-t-lg {
+    border-top-left-radius: 0.5rem; /* 8px */
+    border-top-right-radius: 0.5rem; /* 8px */
+}
+
+.rounded-b-lg {
+    border-bottom-left-radius: 0.5rem; /* 8px */
+    border-bottom-right-radius: 0.5rem; /* 8px */
+}
+
+.rounded-t-none {
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+}
+
+.rounded-b-none {
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
+}
+
   }
