@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use App\Models\Event;
 use App\Models\Delegate_events;
 use App\Models\Delegate;
+use App\Models\Company;
+use App\Models\Organizer;
 use Carbon\Carbon;
 use Auth; 
 use DB;
@@ -34,6 +36,7 @@ class EventosController extends Controller
         ->join('delegates', 'delegate_events.delegate', '=', 'delegates.id')
         ->join('companies', 'delegates.company', '=', 'companies.id')
         ->join('events', 'delegate_events.event', '=', 'events.id')
+        ->join('organizers', 'events.organizer', '=', 'organizers.id')
         ->select('companies.*')
         ->where('delegate_events.event', $id)
         ->paginate(20);
@@ -45,7 +48,11 @@ class EventosController extends Controller
 
         $evento_actual=Delegate_events::where('delegate',$delegate->id)->first();
 
-        $event=Event::where('id',$evento_actual->event)->first();
+        $event = DB::table('events')
+        ->join('organizers', 'events.organizer', '=', 'organizers.id')
+        ->join('companies', 'organizers.company', '=', 'companies.id')
+        ->select('events.*','companies.profile as perfil')
+        ->first();
         // Retornar la vista 'eventos.participantes' con los datos de los participantes
         return view('eventos.participantes', [
             'participantes' => $participantes,
@@ -56,20 +63,28 @@ class EventosController extends Controller
     
     public function participar($eventoId) {
         $evento = Event::find($eventoId);
+        
         if (!$evento) {
             return redirect()->route('evento.participantes', ['id' => $eventoId])->with('error', 'Evento no encontrado');
         }
 
         $delegate = Delegate::where('user', Auth::id())->first();
+        if (!$delegate) {
+            return redirect()->route('evento.participantes', ['id' => $eventoId])->with('error', 'Delegado no encontrado');
+        }
 
-        
-        $inscribir = new Delegate_events();
-        $inscribir->event = $eventoId;
-        $inscribir->delegate = $delegate->id; 
-        $inscribir->save(); 
+        $evento_delegate = Delegate_events::where('event', $eventoId)->where('delegate', $delegate->id)->first();
+        dd($evento_delegate);
+        if ($evento_delegate) {
+            return redirect()->route('evento.participantes', ['id' => $eventoId])->with('message', 'Ya estás inscrito en este evento');
+        } else {
+            $inscribir = new Delegate_events();
+            $inscribir->event = $eventoId;
+            $inscribir->delegate = $delegate->id;
+            $inscribir->save();
 
-        return redirect()->route('evento.participantes', ['id' => $eventoId]);
-       
+            return redirect()->route('evento.participantes', ['id' => $eventoId])->with('message', 'Inscripción exitosa');
+        }
     }
     
     public function disponibles()
@@ -88,7 +103,15 @@ class EventosController extends Controller
     }
     public function completarpago($id)
     {
-        return view('eventos.metodopago');
+        $options = [
+            'ESPAÑA' => 'ESPAÑA',
+            'ESPAÑA' => 'ESPAÑA',
+            'ESPAÑA' => 'ESPAÑA',
+        ];
+        $evento=Event::find($id);
+        $organizador=Organizer::find($evento->organizer);
+        $company=Company::find($organizador->company);
+        return view('eventos.metodopago',['options'=>$options,'evento'=>$evento,'company'=>$company]);
     }
 
     /**
