@@ -3,7 +3,7 @@
 namespace App\Actions\Fortify;
 
 use App\Models\User;
-use App\Models\Companies;
+use App\Models\Company;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\DB   ;
@@ -45,7 +45,7 @@ class CreateNewUser implements CreatesNewUsers
         ]);
 
         // Creación de la compañía
-        $company = Companies::create([
+        $company = Company::create([
             'cif' => $validatedData['cif'],
             'name' => $validatedData['name'],
             'sector' => $validatedData['sector'],

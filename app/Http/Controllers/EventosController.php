@@ -4,6 +4,11 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Event;
+use App\Models\Delegate_events;
+use App\Models\Delegate;
+use Carbon\Carbon;
+use Auth; 
+use DB;
 
 class EventosController extends Controller
 {
@@ -18,23 +23,71 @@ class EventosController extends Controller
     }
     public function activos()
     {
-        return view('dashboard');
+        $eventosActivos = Event::where('active', true)->get();
+        return view('eventos.index', ['eventos' => $eventosActivos]);
     }
+
+    public function participantes($id)
+    {
+        $participantes = DB::table('delegate_events')
+        ->join('delegates', 'delegate_events.delegate', '=', 'delegates.id')
+        ->join('companies', 'delegates.company', '=', 'companies.id')
+        ->join('events', 'delegate_events.event', '=', 'events.id')
+        ->select('companies.*')
+        ->where('delegate_events.event', $id)
+        ->paginate(20);
+    
+
+        $usuario= Auth::id();
+
+        $delegate = Delegate::where('user', Auth::id())->first();
+
+        $evento_actual=Delegate_events::where('delegate',$delegate->id)->first();
+
+        $event=Event::where('id',$evento_actual->event)->first();
+        // Retornar la vista 'eventos.participantes' con los datos de los participantes
+        return view('eventos.participantes', [
+            'participantes' => $participantes,
+            'evento_actual' => $evento_actual,
+            'event' => $event
+        ]);
+    }
+    
+    public function participar($eventoId) {
+        $evento = Event::find($eventoId);
+        if (!$evento) {
+            return redirect()->route('evento.participantes', ['id' => $eventoId])->with('error', 'Evento no encontrado');
+        }
+
+        $delegate = Delegate::where('user', Auth::id())->first();
+
+        
+        $inscribir = new Delegate_events();
+        $inscribir->event = $eventoId;
+        $inscribir->delegate = $delegate->id; 
+        $inscribir->save(); 
+
+        return redirect()->route('evento.participantes', ['id' => $eventoId]);
+       
+    }
+    
     public function disponibles()
     {
-        return view('dashboard');
+        return view('eventos.create');
     }
     public function finalizados()
     {
-        return view('dashboard');
+        $eventosActivos = Event::where('active', false)->get();
+        return view('eventos.index', ['eventos' => $eventosActivos]);
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
     public function create()
     {
         //
+    }
+    public function completarpago($id)
+    {
+        return view('eventos.metodopago');
     }
 
     /**

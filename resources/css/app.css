@@ -3,6 +3,8 @@
 @tailwind components;
 @tailwind utilities;
 
+@tailwindcss ui;
+
 [x-cloak] {
     display: none;
 }
@@ -135,29 +137,37 @@
         border-style: solid;
         border: 2px;
         border-color: var();
-    
-    
-        
-    
-    }
+      }
     .card_eventos{
-        display: flex;
-        flex-direction: column;
-        justify-content: space-between;
-        align-items: left;
-    
-        border: 2px;
-        border-style: solid;
-        border-color: var(--border-color);
-    
-        
-        width: 100%;
-        
-        
-    
-    
-    
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      align-items: left;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+  
+      transition: box-shadow 0.3s ease, transform 0.3s ease; /* Transiciones suaves */
     }
+    
+    .card_eventos:hover {
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2); /* Sombra más oscura al pasar el mouse */
+        transform: scale(1.001); /* Ligero aumento de escala para resaltar el elemento */
+    }
+
+      
+  .card_eventos_img {
+    width: 100%;
+    height: auto;
+    overflow: hidden; /* Asegura que el contenido no se desborde */
+  }
+
+  .card_eventos_img img {
+    width: 100%;
+    height: auto;
+    display: block;
+    object-fit: contain; /* Ajusta la imagen para que quepa dentro del contenedor sin recortarla */
+    border-radius: 10px; /* Mantiene el borde redondeado en la imagen */
+  }
+
     .header{
         display: flex;
         flex-direction: row;
@@ -207,6 +217,140 @@
         gap: 2rem;
     
     }
-    /*css eventos fin*/
+    .eventos-title{
+      font-weight: bold;
 
+    }
+    .fecha_event {
+      font-size: 12px; 
+    }
+
+    .card_eventos_opaco {
+      background-color: transparent; /* Fondo transparente */
+      border-radius: 0.5rem; /* Ajuste del radio de las esquinas */
+      opacity: 0.7; /* Nivel de transparencia del contenido */
+    }
+
+    .card_eventos_wrapper_opaco, 
+    .card_eventos_container_opaco, 
+    .card_eventos_left_opaco{
+        background-color: rgba(128, 128, 128, 0.5); /* Fondo translúcido */
+    }
+    /*css eventos fin*/
+    /*css company Inicio*/
+    .company-info > div {
+      border-top: 1px solid #e5e7eb; /* Color del borde superior */
+      border-bottom: 1px solid #e5e7eb; /* Color del borde inferior */
+    }
+    
+    .company-info > div:first-child {
+        border-top: none; /* Elimina el borde superior del primer elemento */
+    }
+    
+    .company-info > div:last-child {
+        border-bottom: none; /* Elimina el borde inferior del último elemento */
+    }
+    .border-b {
+      border-top: none;
+      border-right: none;
+      border-left: none;
+    }
+    
+    /* Estilo para el borde inferior cuando el input tiene foco */
+    input:focus {
+        border-top: none;
+        border-right: none;
+        border-left: none;
+    }
+    .blur-background {
+        filter: blur(5px);
+    }
+    .participant-card {
+      filter: blur(5px);
+    }
+    .blur {
+        filter: blur(5px);
+    }
+
+    .participant-card {
+      background-color: white;
+      padding: 20px;
+      border-radius: 8px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      display: flex;
+      align-items: center;
+      margin-bottom: 20px;
+  }
+  .participant-card img {
+      height: 64px;
+      margin-right: 16px;
+      border-radius: 50%;
+  }
+  .participant-info {
+      flex: 1;
+  }
+  .participant-info h4 {
+      font-size: 1.25rem;
+      font-weight: bold;
+      margin: 0;
+  }
+  .participant-info p {
+      color: #718096;
+      margin: 4px 0;
+  }
+  .participant-info .category {
+      color: #A0AEC0;
+      font-size: 0.875rem;
+      text-align: right;
+  }
+  .buttons {
+      display: flex;
+      gap: 10px;
+      margin-top: 10px;
+  }
+  .button {
+      background-color: #4A5568;
+      color: white;
+      padding: 8px 16px;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+  }
+  .heart-icon {
+      margin-left: auto;
+      cursor: pointer;
+  }
+  .participant-card {
+    display: flex;
+    flex-direction: column;
+}
+
+.image-container img {
+    width: 100%;
+    height: auto;
+}
+
+.info-container {
+    padding-left: 1rem;
+}
+
+.footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.buttons button {
+    display: inline-block;
+}
+
+.heart-icon {
+    display: inline-block;
+}
+.floating-button {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  z-index: 50; /* Asegúrate de que el botón esté por encima de otros elementos */
+}
   }

@@ -1,24 +1,25 @@
 <!DOCTYPE html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
-    <head>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <meta name="csrf-token" content="{{ csrf_token() }}">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
 
-        <title>{{ config('app.name', 'Zprevia') }}</title>
+    <title>{{ config('app.name', 'Zprevia') }}</title>
 
-        <!-- Fonts -->
-        <link rel="preconnect" href="https://fonts.bunny.net">
-        <link href="https://fonts.bunny.net/css?family=figtree:400,500,600&display=swap" rel="stylesheet" />
-        <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet" />
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
-        <!-- Scripts -->
-        @vite(['resources/css/app.css', 'resources/js/app.js'])
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.bunny.net">
+    <link href="https://fonts.bunny.net/css?family=figtree:400,500,600&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
 
-        <!-- Styles -->
-        @livewireStyles
-    </head>
-    <body class="font-sans antialiased">
+    <!-- Scripts -->
+    @vite(['resources/css/app.css', 'resources/js/app.js'])
+
+    <!-- Styles -->
+    @livewireStyles
+</head>
+<body class="font-sans antialiased h-screen">
     <x-banner />
 
     <div class="flex h-screen">
@@ -29,11 +30,11 @@
         </div>
 
         <!-- Contenido principal -->
-        <div class="h-screen flex flex-col bg-gris-100">
-            <!-- Contenido principal aquí -->
+        <div class="h-full flex flex-col bg-gris-100 flex-1">
+            <!-- Encabezado -->
             <header class="bg-white shadow" style="height: 72px;">
                 <div class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8 flex justify-between items-center">
-                    <!-- Search Input -->
+                    <!-- Input de búsqueda -->
                     <div class="flex items-center w-full max-w-xl h-full">
                         <div class="relative w-full h-full">
                             <span class="absolute inset-y-0 left-0 flex items-center pl-3">
@@ -44,7 +45,7 @@
                             <input type="search" class="block w-full h-full pl-10 pr-3 py-2 border-0 focus:outline-none focus:ring-0 focus:border-transparent sm:text-sm" placeholder="Busqueda" />
                         </div>
                     </div>
-                    <!-- Notification Icon -->
+                    <!-- Icono de notificación -->
                     <div class="mr-1">
                         <div class="relative">
                             <button class="bg-white p-1 rounded-full text-gray-500 hover:text-gray-700 border-0 focus:border-transparent focus:outline-none focus:ring-2 focus:ring-offset-2">
@@ -68,9 +69,9 @@
                                         id="path1" />
                                     </svg>
                             </button>
-                            <!-- Notification Dropdown Menu -->
+                            <!-- Menú desplegable de notificaciones -->
                             <div class="origin-top-right absolute right-0 mt-2 w-48 rounded-md shadow-lg py-1 bg-white ring-1 ring-black ring-opacity-5" style="display:none;">
-                                <!-- Notification items here -->
+                                <!-- Elementos de notificación aquí -->
                                 <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">No new notifications</a>
                             </div>
                         </div>
@@ -78,15 +79,13 @@
                 </div>
             </header>
 
-            <main class="h-full p-1 overflow-y-auto">
+            <main class="flex-1 p-1 overflow-y-auto">
                 {{ $slot }}
             </main>
         </div>
     </div>
 
     @stack('modals')
-
     @livewireScripts
 </body>
-
 </html>
