@@ -21,6 +21,7 @@ Route::middleware([
     Route::post('/participar/{id}', [EventosController::class, 'participar'])->name('evento.participar');
     Route::get('eventos/participantes/{id}', [EventosController::class, 'participantes'])->name('evento.participantes');
     Route::get('eventos/completarpago/{id}', [EventosController::class, 'completarpago'])->name('evento.completarpago');
+    Route::get('eventos/planificar/{id}', [EventosController::class, 'planificar'])->name('evento.planificar');
 
     Route::resource('eventos', EventosController::class);
 

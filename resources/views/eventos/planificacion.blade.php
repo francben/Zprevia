@@ -48,30 +48,38 @@
                 </div>
                 @endif
             @endforeach
-            <div class="relative mt-6 grid grid-cols-1 gap-6 md:grid-cols-2">
-                @foreach($participantes as $part)
-                <div class="bg-white p-4 rounded-lg shadow-md">
-                    <div class="flex">
-                        <div class="image-container w-3/10">
-                            <img src="path-to-logo.png" alt="Logo" class="h-16 mr-4">
-                        </div>
-                        <div class="info-container w-7/10">
-                            <h4 class="text-xl font-bold">{{ $part->name }}</h4>
-                            <h5 class="text-xl font-bold"></h5>
-                            <p class="text-gray-600">{{ $part->description }}</p>
-                        </div>
-                    </div>
-                    <div class="footer mt-4 flex items-center justify-between">
-                        <div class="buttons flex gap-2">
-                            <button class="bg-gray-500 text-white px-4 py-2 rounded">Video</button>
-                            <button class="bg-gray-500 text-white px-4 py-2 rounded">Dossier</button>
-                        </div>
-                        <div class="heart-icon text-gray-200 cursor-pointer">
-                            <x-hearticon/>
-                        </div>
-                    </div>
+            
+            <div class="mt-6 grid grid-cols-1 gap-6 md:grid-cols-1">
+                <div class="bg-white rounded-lg ">
+                    @foreach($participantes as $part)
+                    <table class="table-auto">
+                        <thead>
+                            <tr>
+                            <th>Song</th>
+                            <th>Artist</th>
+                            <th>Year</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                            <td>The Sliding Mr. Bones (Next Stop, Pottersville)</td>
+                            <td>Malcolm Lockyer</td>
+                            <td>1961</td>
+                            </tr>
+                            <tr>
+                            <td>Witchy Woman</td>
+                            <td>The Eagles</td>
+                            <td>1972</td>
+                            </tr>
+                            <tr>
+                            <td>Shining Star</td>
+                            <td>Earth, Wind, and Fire</td>
+                            <td>1975</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    @endforeach
                 </div>
-                @endforeach
             </div>
 
         </div>

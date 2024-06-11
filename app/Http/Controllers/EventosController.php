@@ -45,12 +45,13 @@ class EventosController extends Controller
 
         $delegate = Delegate::where('user', Auth::id())->first();
 
-        $evento_actual=Delegate_events::where('delegate',$delegate->id)->first();
+        $evento_actual=Delegate_events::where('event',$id)->first();
 
         $event = DB::table('events')
         ->join('organizers', 'events.organizer', '=', 'organizers.id')
         ->join('companies', 'organizers.company', '=', 'companies.id')
         ->select('events.*','companies.profile as perfil')
+        ->where('events.id',$evento_actual->event)
         ->first();
         // Retornar la vista 'eventos.participantes' con los datos de los participantes
         return view('eventos.participantes', [
@@ -73,7 +74,7 @@ class EventosController extends Controller
         }
 
         $evento_delegate = Delegate_events::where('event', $eventoId)->where('delegate', $delegate->id)->first();
-        dd($evento_delegate);
+        
         if ($evento_delegate) {
             return redirect()->route('evento.participantes', ['id' => $eventoId])->with('message', 'Ya estás inscrito en este evento');
         } else {
@@ -94,6 +95,37 @@ class EventosController extends Controller
     {
         $eventosActivos = Event::where('active', false)->get();
         return view('eventos.index', ['eventos' => $eventosActivos]);
+    }
+    public function planificar($id)
+    {
+        $participantes = DB::table('delegate_events')
+        ->join('delegates', 'delegate_events.delegate', '=', 'delegates.id')
+        ->join('companies', 'delegates.company', '=', 'companies.id')
+        ->join('events', 'delegate_events.event', '=', 'events.id')
+        ->join('organizers', 'events.organizer', '=', 'organizers.id')
+        ->select('companies.*')
+        ->where('delegate_events.event', $id)
+        ->paginate(20);
+    
+
+        $usuario= Auth::id();
+
+        $delegate = Delegate::where('user', Auth::id())->first();
+
+        $evento_actual=Delegate_events::where('event',$id)->first();
+
+        $event = DB::table('events')
+        ->join('organizers', 'events.organizer', '=', 'organizers.id')
+        ->join('companies', 'organizers.company', '=', 'companies.id')
+        ->select('events.*','companies.profile as perfil')
+        ->where('events.id',$evento_actual->event)
+        ->first();
+        // Retornar la vista 'eventos.participantes' con los datos de los participantes
+        return view('eventos.planificacion', [
+            'participantes' => $participantes,
+            'evento_actual' => $evento_actual,
+            'event' => $event
+        ]);
     }
 
     public function create()
