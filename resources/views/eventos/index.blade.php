@@ -18,7 +18,7 @@
                         @endif
                                         <div class="ml-4">
                                             <div class="card_eventos_details flex flex-col eventos-title items-center">
-                                                <p id="name">{{ $event->name }}-{{ $event->id }}</p>
+                                                <p id="name">{{ $event->name }}</p>
                                             </div>
                                         </div>
                                     </div>
