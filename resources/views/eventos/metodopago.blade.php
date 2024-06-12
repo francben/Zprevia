@@ -23,7 +23,6 @@
                 </x-slot>
             @endforeach
        
-            <x-validation-errors class="mb-4" />
 
             @session('status')
                 <div class="mb-4 font-medium text-sm text-green-600">
@@ -40,7 +39,6 @@
                 </div>
                 <br>
                 <x-tarjeta-pago/>
-                <br>
                 <div class="block mt-4 mx-auto">
                     <h5 style="font-family: Inter, sans-serif; font-weight: 700; font-size: 17px; color: #6c757d;">
                         {{ __('Email') }}
@@ -56,8 +54,7 @@
                     </h4>
                 </div>
                 <!-- Credit Card Input Form -->
-                <div class="credit-card-form mt-4">
-                    <label for="card-number" class="block text-sm font-medium text-gray-700">Datos de tarjeta</label>
+                <div class=" mt-4">
                     <div class="mt-1 relative rounded-md shadow-sm">
                         <input type="text" id="card-number" name="card-number" class="border-gris-300 focus:border-gris-500 focus:ring-gris-500 rounded-md shadow-sm block mt-1 w-full pl-10" placeholder="1234 1234 1234 1234" maxlength="19" required>
                         <div class="absolute inset-y-0 right-0 pr-3 flex items-center pointer-events-none">

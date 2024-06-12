@@ -51,7 +51,8 @@ class EventosController extends Controller
         $event = DB::table('events')
         ->join('organizers', 'events.organizer', '=', 'organizers.id')
         ->join('companies', 'organizers.company', '=', 'companies.id')
-        ->select('events.*','companies.profile as perfil')
+        ->join('delegate_events', 'events.id', '=', 'delegate_events.event')
+        ->select('events.*','companies.profile as perfil','delegate_events.paid as pagado')
         ->where('events.id',$evento_actual->event)
         ->first();
         // Retornar la vista 'eventos.participantes' con los datos de los participantes
@@ -104,7 +105,7 @@ class EventosController extends Controller
         ->join('companies', 'delegates.company', '=', 'companies.id')
         ->join('events', 'delegate_events.event', '=', 'events.id')
         ->join('organizers', 'events.organizer', '=', 'organizers.id')
-        ->select('companies.*')
+        ->select('companies.*','delegates.name as representante')
         ->where('delegate_events.event', $id)
         ->paginate(20);
     
