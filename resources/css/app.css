@@ -234,7 +234,7 @@
     .card_eventos_wrapper_opaco, 
     .card_eventos_container_opaco, 
     .card_eventos_left_opaco{
-        background-color: rgba(128, 128, 128, 0.5); /* Fondo translúcido */
+        background-color: rgba(128, 128, 128, 0.4); /* Fondo translúcido */
     }
     /*css eventos fin*/
     /*css company Inicio*/
@@ -418,5 +418,71 @@
     border-bottom-left-radius: 0;
     border-bottom-right-radius: 0;
 }
+/* Estilos para el botón */
+.relative_buton a {
+    background-color: #38a169; /* Verde */
+    color: white;
+    padding: 8px 16px;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+/* Estilos para los elementos participantes */
+.content-container .participant {
+    background-color: white;
+    padding: 24px;
+    margin: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.relative {
+  position: relative;
+}
+
+.inline-block {
+  display: inline-block;
+}
+
+.absolute {
+  position: absolute;
+}
+
+.bottom-0 {
+  bottom: 0;
+}
+
+.right-0 {
+  right: 0;
+}
+
+.bg-white {
+  background-color: white;
+}
+
+.rounded-full {
+  border-radius: 9999px;
+}
+
+.p-2 {
+  padding: 0.5rem;
+}
+
+.shadow-lg {
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+}
+
+.w-24 {
+  width: 6rem;
+}
+
+.h-24 {
+  height: 6rem;
+}
+
+.text-blue-500 {
+  color: #3b82f6;
+}
+
 
   }
