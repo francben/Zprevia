@@ -239,7 +239,7 @@
         background-repeat: no-repeat;
         background-size: cover;
         background-position: center center;
-        background: url(/img_conecta/Frame\ 24.png);
+        /*background: url(/img_conecta/Frame\ 24.png);*/
     }
     .card_eventos_wrapper{
         display: flex;

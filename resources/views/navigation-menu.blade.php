@@ -165,25 +165,66 @@
                 </div>
             </x-nav-link>
         </div>
-        <div class="hidden sm:flex sm:flex-col sm:items-start ml-3 sm:space-y-4 sm:mt-4">
+        <div class="hidden sm:flex sm:flex-col sm:items-start ml-3 sm:space-y-4 sm:mt-4" id="AyudaLink">
             <!-- Sexto Menú -->
-            <x-nav-link href="#" class="border-b-0  letra_custom">
-                <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg" class="stroke-current hover:stroke-gray-900">
-                    <g clip-path="url(#clip0_971_392)">
-                        <path d="M2.50008 4.03334H17.5001C17.5718 4.03334 17.6334 4.09494 17.6334 4.16668V15.8333C17.6334 15.9051 17.5718 15.9667 17.5001 15.9667H2.50008C2.42835 15.9667 2.36675 15.9051 2.36675 15.8333V4.16668C2.36675 4.09494 2.42835 4.03334 2.50008 4.03334Z" stroke-width="1.4"/>
-                        <rect x="6.5" y="3.33334" width="1.16667" height="13.3333" fill="#C2CFE0"/>
-                        <rect x="12.3333" y="3.33334" width="1.16667" height="13.3333" fill="#C2CFE0"/>
-                    </g>
-                    <defs>
-                        <clipPath id="clip0_971_392">
-                            <rect width="20" height="20" fill="white"/>
-                        </clipPath>
-                    </defs>
-                </svg>
-                <div class="ml-3">
-                    {{ __('Ayuda') }}
-                </div>
-            </x-nav-link>
+            @php
+                $isAyudaActive = request()->routeIs('guia') || request()->routeIs('politica') || request()->routeIs('aviso');
+            @endphp
+            <div class="cursor-pointer flex justify-between items-center" >
+                <x-nav-link href="#" :active="$isAyudaActive" class="border-b-0  letra_custom">
+                    <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg" class="stroke-current hover:stroke-gray-900">
+                        <g clip-path="url(#clip0_971_392)">
+                            <path d="M2.50008 4.03334H17.5001C17.5718 4.03334 17.6334 4.09494 17.6334 4.16668V15.8333C17.6334 15.9051 17.5718 15.9667 17.5001 15.9667H2.50008C2.42835 15.9667 2.36675 15.9051 2.36675 15.8333V4.16668C2.36675 4.09494 2.42835 4.03334 2.50008 4.03334Z" stroke-width="1.4"/>
+                            <rect x="6.5" y="3.33334" width="1.16667" height="13.3333" fill="#C2CFE0"/>
+                            <rect x="12.3333" y="3.33334" width="1.16667" height="13.3333" fill="#C2CFE0"/>
+                        </g>
+                        <defs>
+                            <clipPath id="clip0_971_392">
+                                <rect width="20" height="20" fill="white"/>
+                            </clipPath>
+                        </defs>
+                    </svg>
+                    <div class="ml-3">
+                        {{ __('Ayuda') }}
+                    </div>
+                </x-nav-link>
+            </div>
+            <!-- Menú Acordeón -->
+            <div class="{{ $isAyudaActive ? 'block' : 'hidden' }} max-w-7xl mx-auto sm:px-1 lg:px-2" id="ayudaContent">
+                <!-- Lista de opciones del menú -->
+                <ul class="mt-2">
+                    <li class="mb-2">
+                        <x-nav-link href="{{ route('guia') }}" :active="request()->routeIs('guia')" class="border-b-0 letra_custom "><!--{{ request()->routeIs('eventosActivos') ? 'bg-gray-200' : '' }}-->
+                            <svg width="8" height="8" viewBox="0 0 8 8" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <circle cx="4" cy="4" r="3" stroke="#01A69C" stroke-width="2"/>
+                            </svg>
+                            <div class="ml-3">
+                                {{ __('Guia del Usuario') }}
+                            </div>
+                        </x-nav-link>
+                    </li>
+                    <li class="mb-2">
+                        <x-nav-link href="{{ route('politica') }}" :active="request()->routeIs('politica')" class="border-b-0 letra_custom">
+                            <svg width="8" height="8" viewBox="0 0 8 8" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <circle cx="4" cy="4" r="3" stroke="#01A69C" stroke-width="2"/>
+                            </svg>
+                            <div class="ml-3">
+                                {{ __('Politica de Privacidad') }}
+                            </div>
+                        </x-nav-link>
+                    </li>
+                    <li class="mb-2">
+                        <x-nav-link href="{{ route('aviso') }}" :active="request()->routeIs('aviso')" class="border-b-0 letra_custom">
+                            <svg width="8" height="8" viewBox="0 0 8 8" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <circle cx="4" cy="4" r="3" stroke="#01A69C" stroke-width="2"/>
+                            </svg>
+                            <div class="ml-3">
+                                {{ __('Aviso Legal') }}
+                            </div>
+                        </x-nav-link>
+                    </li>
+                </ul>
+            </div>
         </div>
         <div class="hidden sm:flex sm:flex-col sm:items-start ml-3 sm:space-y-4 sm:mt-4">
             <!-- Septimo Menú -->
@@ -476,6 +517,39 @@
     });
 
     eventoContent.addEventListener('mouseout', (event) => {
+        // Solo ocultar si el ratón no está entrando al enlace del menú
+        if (!menuEventos.contains(event.relatedTarget)) {
+            hideMenu();
+        }
+    });
+    //Ayuda
+    const ayudaEventos = document.getElementById('AyudaLink');
+    const ayudaContent = document.getElementById('ayudaContent');
+    const iconA = ayudaEventos.querySelector('svg');
+    function showAyuda() {
+        ayudaContent.classList.remove('hidden');
+        iconA.classList.add('rotate-90');
+    }
+
+    // Función para ocultar el contenido del menú
+    function hideAyuda() {
+        ayudaContent.classList.add('hidden');
+        iconA.classList.remove('rotate-90');
+    }
+
+    // Mostrar el menú cuando el ratón esté sobre el enlace o el contenido
+    ayudaEventos.addEventListener('mouseover', showAyuda);
+    ayudaContent.addEventListener('mouseover', showAyuda);
+
+    // Ocultar el menú cuando el ratón salga del enlace o el contenido
+    ayudaEventos.addEventListener('mouseout', (event) => {
+        // Solo ocultar si el ratón no está entrando al contenido del menú
+        if (!ayudaContent.contains(event.relatedTarget)) {
+            hideAyuda();
+        }
+    });
+
+    ayudaContent.addEventListener('mouseout', (event) => {
         // Solo ocultar si el ratón no está entrando al enlace del menú
         if (!menuEventos.contains(event.relatedTarget)) {
             hideMenu();

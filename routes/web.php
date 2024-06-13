@@ -5,6 +5,7 @@ use App\Http\Controllers\RolController;
 use App\Http\Controllers\UsuarioController;
 use App\Http\Controllers\EventosController;
 use App\Http\Controllers\CompanysController;
+use App\Http\Controllers\AyudaController;
 
 Route::redirect('/', '/eventos');
 
@@ -37,5 +38,10 @@ Route::middleware([
     Route::resource('roles', RolController::class);
     Route::resource('usuarios', UsuarioController::class);
     Route::resource('companies',CompanysController::class);
+
+    //Ayuda
+    Route::get('ayuda/guia', [AyudaController::class, 'guia'])->name('guia');
+    Route::get('ayuda/politica', [AyudaController::class, 'politica'])->name('politica');
+    Route::get('ayuda/aviso', [AyudaController::class, 'aviso'])->name('aviso');
 });
 

@@ -17,6 +17,7 @@
 
     <!-- Incluye SweetAlert2 JS -->
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
     <!-- Scripts -->
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 
@@ -90,7 +91,8 @@
     </div>
 
     @stack('modals')
-    @livewireScripts
+    
+    {{--@livewire('wire-elements-modal')--}}
     @if (session()->has('success'))
         <script>
             const mensaje = {!! json_encode(session()->get('success')) !!};
@@ -132,5 +134,7 @@
         </script>
     @endif
     
+    @livewireScripts
+    @stack('js')
 </body>
 </html>

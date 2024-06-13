@@ -60,27 +60,25 @@
     </div>
 
     <x-modal-evento name="ver-Evento">
-        <x-slot:body>
+    <x-slot:body>
             <div class="text-gray-900 font-sans text-3xl font-black mb-4">{{$event->name}}</div>
-            <div class="font-sans mt-2">
+            <div class="font-sans mt-2 text-sm">
                 {{$event->description}}
             </div>
             <div class="grid grid-cols-2 sm:grid-cols-4 gap-4">
                 <div class="col-span-2 sm:col-span-1">
                     <div>
                         <img src="{{$qrCode}}" alt="">
-                        
                     </div>
-                    
                 </div>
-                <div class="col-span-2 sm:col-span-2">
+                <div class="col-span-2 sm:col-span-2 flex flex-col justify-between">
                     <div class="font-sans mt-2 font-black">
                         {{$event->locality}}
                     </div>
-                    <div class="font-sans mt-2">
+                    <div class="flex font-sans mt-2 text-xs mt-4">
                         <h4 class="font-sans text-gray-400 mr-3">Ubicacion:  <h4>  {{$event->place}}
                     </div>
-                    <div class="flex items-center space-x-4">
+                    <div class="flex items-center space-x-4 mt-auto text-xs">
                         @if (Laravel\Jetstream\Jetstream::managesProfilePhotos())
                             <div class="rounded-full object-cover w-12 h-12">
                                 <img class="h-full w-full rounded-full object-cover" src="{{ Auth::user()->profile_photo_url }}" alt="{{ Auth::user()->name }}" />
@@ -94,22 +92,19 @@
                     </div>
                 </div>
                 <div class="col-span-2 sm:col-span-1 flex flex-col justify-between">
-                    <div class="mb-4">
+                    <div class="mb-4 text-xs">
                         <p class="text-gray-400" id="date">{{ \Carbon\Carbon::parse($event->date)->locale('es')->isoFormat('DD [de] MMMM') }}</p>
                     </div>
                     <div class="mt-auto">
                         <form action="{{ route('evento.participar', ['id' => $event->id]) }}" method="POST">
                             @csrf    
-                            <button class="bg-green-700 hover:bg-green-600 focus:bg-green-400 text-white px-4 py-2 rounded-lg shadow-md focus:outline-none focus:ring-2 focus:ring-green-400 focus:border-transparent transition duration-300 ease-in-out">
+                            <button class=" w-full bg-green-500 hover:bg-green-600 focus:bg-green-400 text-white px-4 py-2 rounded-lg shadow-md focus:outline-none focus:ring-2 focus:ring-green-400 focus:border-transparent transition duration-300 ease-in-out">
                                 Participar
                             </button>
                         </form>
-
                     </div>
                 </div>
-
             </div>
-            
         </x-slot>
     </x-modal-evento>
 </div>
