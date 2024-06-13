@@ -214,7 +214,7 @@
                     <ul class="mt-2">
                             
                         <li>
-                            <x-dropdown-link href="{{ route('profile.show') }}">
+                            <x-dropdown-link href="{{ route('company.perfil') }}">
                                 {{ __('Perfil') }}
                             </x-dropdown-link>
                         </li>
@@ -391,7 +391,7 @@
                     <!-- Lista de opciones del menú -->
                     <ul>
                         <li>
-                            <x-dropdown-link href="{{ route('profile.show') }}">
+                            <x-dropdown-link href="{{ route('company.perfil')}}">
                             <svg width="20" height="20" viewBox="0 0 512 512" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns="http://www.w3.org/2000/svg" xmlns:svg="http://www.w3.org/2000/svg" class="text-gray-500" style="filter: hue-rotate(180deg) saturate(200%);">
                                     <defs id="defs1" />
                                     <g id="g1">
