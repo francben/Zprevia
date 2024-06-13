@@ -13,7 +13,7 @@
         <div class=" flex items-center space-x-4">
             @if (Laravel\Jetstream\Jetstream::managesProfilePhotos())
                 <div class="rounded-full object-cover w-13 h-13">
-                    <img class="h-full w-full rounded-full object-cover" src="{{ Auth::user()->profile_photo_url }}" alt="{{ Auth::user()->name }}" />
+                    <img class="h-full w-full rounded-full object-cover" src="{{ Auth::user()->profile_photo_url }}" alt="{{ Auth::user()->name }}" style="width: 100%; height: 100%; max-width: 50px; max-height: 50px; border-radius: 50%; margin: 0; padding: 0;"/>
                 </div>
             @else
                 <div class="w-12 h-12">
@@ -197,7 +197,7 @@
                     <ul class="mt-2">
                             
                         <li>
-                            <x-dropdown-link href="{{ route('profile.show') }}">
+                            <x-dropdown-link href="{{ route('company.perfil') }}">
                                 {{ __('Perfil') }}
                             </x-dropdown-link>
                         </li>
@@ -373,7 +373,7 @@
                     <ul>
                             
                         <li>
-                            <x-dropdown-link href="{{ route('profile.show') }}">
+                            <x-dropdown-link href="{{ route('company.perfil')}}">
                             <svg width="20" height="20" viewBox="0 0 512 512" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns="http://www.w3.org/2000/svg" xmlns:svg="http://www.w3.org/2000/svg" class="text-gray-500" style="filter: hue-rotate(180deg) saturate(200%);">
                                     <defs id="defs1" />
                                     <g id="g1">

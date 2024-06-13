@@ -218,7 +218,7 @@
                                                 <div class="card_eventos_left">
                                                     <div class="">
                                                         <div class=" text-center text-xl text-gray-800 font-semibold">
-                                                            Grupo Centro Sur
+                                                            {{$company->name}}
                                                         </div>
                                                     </div>
                                                 </div>

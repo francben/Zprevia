@@ -28,9 +28,14 @@ Route::middleware([
     //empresas 
     Route::get('/empresas', [CompanysController::class, 'index'])->name('empresas');
 
+    Route::get('company/perfil',[CompanysController::class,'editar'])->name('company.perfil');
+    Route::post('company/update/{id}', [CompanysController::class, 'update'])->name('company.update');
+    Route::post('company/profiledelete', [CompanysController::class, 'profiledelete'])->name('company.profiledelete');
+
     
     //usuarios
     Route::resource('roles', RolController::class);
     Route::resource('usuarios', UsuarioController::class);
+    Route::resource('companies',CompanysController::class);
 });
 

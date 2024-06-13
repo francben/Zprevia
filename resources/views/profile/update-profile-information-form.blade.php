@@ -23,12 +23,19 @@
                                     reader.readAsDataURL($refs.photo.files[0]);
                             " />
 
-                <x-label for="photo" value="{{ __('Photo') }}" />
+                <!-- Label -->
+                <x-label for="photo" value="{{ $this->user->name }}" class="mb-2" />
 
-                <!-- Current Profile Photo -->
-                <div class="mt-2" x-show="! photoPreview">
-                    <img src="{{ $this->user->profile_photo_url }}" alt="{{ $this->user->name }}" class="rounded-full h-20 w-20 object-cover">
+                <!-- Container for profile photo and name -->
+                <div class="flex items-center space-x-4 mt-2">
+                    <!-- Profile Photo -->
+                    <div x-show="!photoPreview">
+                        <img src="{{ $this->user->profile_photo_url }}" alt="{{ $this->user->name }}" class="rounded-full h-10 w-10 object-cover">
+                    </div>
+                    <!-- User Name -->
+                    <p class="text-lg font-medium">{{ $this->user->name }}</p>
                 </div>
+
 
                 <!-- New Profile Photo Preview -->
                 <div class="mt-2" x-show="photoPreview" style="display: none;">
@@ -51,35 +58,61 @@
             </div>
         @endif
 
-        <!-- Name -->
-        <div class="col-span-6 sm:col-span-4">
-            <x-label for="name" value="{{ __('Name') }}" />
-            <x-input id="name" type="text" class="mt-1 block w-full" wire:model="state.name" required autocomplete="name" />
-            <x-input-error for="name" class="mt-2" />
-        </div>
-
         <!-- Email -->
-        <div class="col-span-6 sm:col-span-4">
-            <x-label for="email" value="{{ __('Email') }}" />
-            <x-input id="email" type="email" class="mt-1 block w-full" wire:model="state.email" required autocomplete="username" />
-            <x-input-error for="email" class="mt-2" />
-
-            @if (Laravel\Fortify\Features::enabled(Laravel\Fortify\Features::emailVerification()) && ! $this->user->hasVerifiedEmail())
-                <p class="text-sm mt-2">
-                    {{ __('Your email address is unverified.') }}
-
-                    <button type="button" class="underline text-sm text-gray-600 hover:text-gray-900 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500" wire:click.prevent="sendEmailVerification">
-                        {{ __('Click here to re-send the verification email.') }}
-                    </button>
-                </p>
-
-                @if ($this->verificationLinkSent)
-                    <p class="mt-2 font-medium text-sm text-green-600">
-                        {{ __('A new verification link has been sent to your email address.') }}
-                    </p>
-                @endif
-            @endif
-        </div>
+            <div class="max-w-4xl mx-auto p-4">
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                    <div class="col-span-1">
+                        <x-label for="name" value="Nombre" />
+                        <x-input_empresa id="name" type="text" class="mt-1 block w-full" wire:model="state.name" required autocomplete="name" />
+                        <x-input-error for="name" class="mt-2" />
+                    </div>
+                    <div class="col-span-1">
+                        <x-label for="email" value="Email" />
+                        <x-input_empresa id="email" type="email" class="mt-1 block w-full" wire:model="state.email" required autocomplete="username" />
+                        <x-input-error for="email" class="mt-2" />
+                    </div>
+                    <div class="col-span-1">
+                        <x-label for="telephone" value="Teléfono" />
+                        <x-input_empresa id="telephone" type="text" class="mt-1 block w-full" wire:model="state.telephone" required autocomplete="telephone" />
+                        <x-input-error for="telephone" class="mt-2" />
+                    </div>
+                    <div class="col-span-1">
+                        <x-label for="cif" value="DNI" />
+                        <x-input_empresa id="cif" type="text" class="mt-1 block w-full" wire:model="state.cif" required autocomplete="cif" />
+                        <x-input-error for="cif" class="mt-2" />
+                    </div>
+                    <div class="col-span-1">
+                        <x-label for="rol_en_empresa" value="Rol en la Empresa" />
+                        <x-input_empresa id="rol_en_empresa" type="text" class="mt-1 block w-full" wire:model="state.rol_en_empresa" required autocomplete="rol_en_empresa" />
+                        <x-input-error for="rol_en_empresa" class="mt-2" />
+                    </div>
+                </div>
+            </div>
+            <div class="card_eventos sm:rounded-lg ">
+                    <div class="card_eventos_wrapper">
+                        <div class="p-6 lg:p-8 bg-white border-b border-gray-200">
+                            <div class="card_eventos_container flex items-center justify-between">
+                                <div class="card_eventos_left">
+                                    <div class="">
+                                        <div class=" text-center text-xl text-gray-800 font-semibold">
+                                            {{$this->user->name}}                                        
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card_eventos_img" id="banner">
+                        <div class="logo_pincipal">
+                            <div class="relative inline-block">
+                                <img src="" alt="Icon" class="w-26 h-26 rounded-full">
+                                <button class="absolute bottom-0 right-0 bg-white rounded-full p-2 shadow-lg">
+                                    <x-icon_check/>
+                                </button>
+                            </div>
+                        </div>
+                    </div>                  
+            </div>
     </x-slot>
 
     <x-slot name="actions">

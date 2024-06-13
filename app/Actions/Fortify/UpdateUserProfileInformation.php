@@ -3,6 +3,7 @@
 namespace App\Actions\Fortify;
 
 use App\Models\User;
+use App\Models\Company;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Validation\Rule;
@@ -17,10 +18,14 @@ class UpdateUserProfileInformation implements UpdatesUserProfileInformation
      */
     public function update(User $user, array $input): void
     {
-        Validator::make($input, [
+            Validator::make($input, [
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'email', 'max:255', Rule::unique('users')->ignore($user->id)],
             'photo' => ['nullable', 'mimes:jpg,jpeg,png', 'max:1024'],
+            'telephone' => ['required', 'numeric'], // Cambiado a numérico
+            'rol_en_empresa' => ['required', 'string', 'max:255'],
+            'cif' =>['required', 'string', 'max:255'],
+
         ])->validateWithBag('updateProfileInformation');
 
         if (isset($input['photo'])) {
@@ -35,6 +40,12 @@ class UpdateUserProfileInformation implements UpdatesUserProfileInformation
                 'name' => $input['name'],
                 'email' => $input['email'],
             ])->save();
+
+            $company=Company::where('admin',$user->id)->first();
+            $company->telephone=$input['email'];
+            $company->rol_en_empresa=$input['rol_en_empresa'];
+            $company->cif=$input['cif'];
+            $company->update();
         }
     }
 
@@ -50,6 +61,12 @@ class UpdateUserProfileInformation implements UpdatesUserProfileInformation
             'email' => $input['email'],
             'email_verified_at' => null,
         ])->save();
+
+        $company=Company::where('admin',$user->id)->first();
+        $company->telephone=$input['email'];
+        $company->rol_en_empresa=$input['rol_en_empresa'];
+        $company->cif=$input['cif'];
+        $company->update();
 
         $user->sendEmailVerificationNotification();
     }
