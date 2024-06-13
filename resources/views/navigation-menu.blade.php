@@ -28,15 +28,15 @@
     </div>
 
     <!-- Navigation Links -->
-    <div class="max-w-7xl mx-auto px-2 flex justify-between h-16">
-        <div class="hidden sm:flex sm:flex-col sm:items-start ml-3 sm:space-y-4 sm:mt-4">
+    <div class="sm:block hidden max-w-7xl mx-auto px-2 justify-between h-16">
+        <div class="hidden sm:flex sm:flex-col sm:items-start ml-3 sm:space-y-4 sm:mt-4"id="eventosLink">
             <!-- Primer Menú -->
             @php
-                $isEventosActive = request()->routeIs('eventos') || request()->routeIs('eventosActivos') || request()->routeIs('eventosDisponibles') || request()->routeIs('eventosFinalizados');
+                $isEventosActive = request()->routeIs('eventos.index') || request()->routeIs('eventosActivos') || request()->routeIs('eventosDisponibles') || request()->routeIs('eventosFinalizados');
             @endphp
 
-            <div class="cursor-pointer flex justify-between items-center" id="eventosLink">
-                <x-nav-link href="#" :active="$isEventosActive" class="border-b-0 letra_custom">
+            <div class="cursor-pointer flex justify-between items-center" >
+                <x-nav-link href="{{ route('eventos.index') }}" class="border-b-0 letra_custom">
                     <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg" class="stroke-current hover:stroke-gray-900">
                         <g clip-path="url(#clip0_923_425)">
                             <path d="M3.5 10.1333C3.33431 10.1333 3.2 9.99902 3.2 9.83333V3.5C3.2 3.33431 3.33431 3.2 3.5 3.2H8.16667C8.33235 3.2 8.46667 3.33431 8.46667 3.5V9.83333C8.46667 9.99902 8.33235 10.1333 8.16667 10.1333H3.5ZM3.5 16.8C3.33431 16.8 3.2 16.6657 3.2 16.5V13.5C3.2 13.3343 3.33431 13.2 3.5 13.2H8.16667C8.33235 13.2 8.46667 13.3343 8.46667 13.5V16.5C8.46667 16.6657 8.33235 16.8 8.16667 16.8H3.5ZM11.8333 16.8C11.6676 16.8 11.5333 16.6657 11.5333 16.5V10.1667C11.5333 10.001 11.6676 9.86667 11.8333 9.86667H16.5C16.6657 9.86667 16.8 10.001 16.8 10.1667V16.5C16.8 16.6657 16.6657 16.8 16.5 16.8H11.8333ZM11.5333 3.5C11.5333 3.33431 11.6676 3.2 11.8333 3.2H16.5C16.6657 3.2 16.8 3.33431 16.8 3.5V6.5C16.8 6.66569 16.6657 6.8 16.5 6.8H11.8333C11.6676 6.8 11.5333 6.66569 11.5333 6.5V3.5Z" stroke-width="1.4"/>
@@ -54,7 +54,7 @@
             </div>
 
             <!-- Menú Acordeón -->
-            <div class="{{ $isEventosActive ? 'block' : 'hidden' }} max-w-7xl mx-auto px-1 sm:px-1 lg:px-4" id="eventoContent">
+            <div class="{{ $isEventosActive ? 'block' : 'hidden' }} max-w-7xl mx-auto sm:px-1 lg:px-2" id="eventoContent">
                 <!-- Lista de opciones del menú -->
                 <ul class="mt-2">
                     <li class="mb-2">
@@ -89,7 +89,9 @@
                     </li>
                 </ul>
             </div>
-        
+        </div>
+        <div class="hidden sm:flex sm:flex-col sm:items-start ml-3 sm:space-y-4 sm:mt-4">
+            <!-- Segundo Menú -->
             <x-nav-link href="{{ route('empresas') }}" :active="request()->routeIs('empresas')" class="border-b-0  letra_custom">
                 <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg" class="stroke-current hover:stroke-gray-900">
                     <g clip-path="url(#clip0_923_419)">
@@ -105,6 +107,9 @@
                     {{ __('Empresa') }}
                 </div>
             </x-nav-link>
+        </div>
+        <div class="hidden sm:flex sm:flex-col sm:items-start ml-3 sm:space-y-4 sm:mt-4">
+            <!-- Tercer Menú -->
             <x-nav-link href="#" class="border-b-0  letra_custom">
                 <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg" class="stroke-current hover:stroke-gray-900">
                     <g clip-path="url(#clip0_971_412)">
@@ -122,6 +127,9 @@
                     {{ __('Mensajes') }}
                 </div>
             </x-nav-link>
+        </div>
+        <div class="hidden sm:flex sm:flex-col sm:items-start ml-3 sm:space-y-4 sm:mt-4">
+            <!-- Cuarto Menú -->
             <x-nav-link href="#" class="border-b-0  letra_custom">
                 <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg" class="stroke-current hover:stroke-gray-900">
                     <g clip-path="url(#clip0_971_406)">
@@ -138,6 +146,9 @@
                     {{ __('Contactos') }}
                 </div>
             </x-nav-link>
+        </div>
+        <div class="hidden sm:flex sm:flex-col sm:items-start ml-3 sm:space-y-4 sm:mt-4">
+            <!-- Quinto Menú -->
             <x-nav-link href="#" class="border-b-0  letra_custom">
                 <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg" class="stroke-current hover:stroke-gray-900">
                     <g clip-path="url(#clip0_971_400)">
@@ -153,6 +164,9 @@
                     {{ __('Chat') }}
                 </div>
             </x-nav-link>
+        </div>
+        <div class="hidden sm:flex sm:flex-col sm:items-start ml-3 sm:space-y-4 sm:mt-4">
+            <!-- Sexto Menú -->
             <x-nav-link href="#" class="border-b-0  letra_custom">
                 <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg" class="stroke-current hover:stroke-gray-900">
                     <g clip-path="url(#clip0_971_392)">
@@ -170,6 +184,9 @@
                     {{ __('Ayuda') }}
                 </div>
             </x-nav-link>
+        </div>
+        <div class="hidden sm:flex sm:flex-col sm:items-start ml-3 sm:space-y-4 sm:mt-4">
+            <!-- Septimo Menú -->
             <hr />
             <!-- Título del menú (clickeable) -->
             <div class="cursor-pointer flex justify-between items-center" id="menuTitle">
@@ -218,7 +235,7 @@
         </div>
         
         <!-- Hamburger para dispositivos pequeños -->
-        <div class="-me-2 flex items-center sm:hidden">
+        <div class="hidden -me-2 flex items-center sm:hidden">
             <button @click="open = ! open" class="inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-gray-500 hover:bg-gray-100 focus:outline-none focus:bg-gray-100 focus:text-gray-500 transition duration-150 ease-in-out">
                 <svg class="h-6 w-6" stroke="currentColor" fill="none" viewBox="0 0 24 24">
                     <path :class="{'hidden': open, 'inline-flex': ! open }" class="inline-flex" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
@@ -229,7 +246,7 @@
     </div>
 
     <!-- Responsive Navigation Menu -->
-    <div :class="{'block': open, 'hidden': ! open}" class="hidden sm:hidden">
+    <div class="sm:hidden">
         <div class="pt-2 pb-3 space-y-1">
             <div class=" flex items-center" style="justify-content: center;">
                 @if (Laravel\Jetstream\Jetstream::managesProfilePhotos())
@@ -241,50 +258,52 @@
             <!-- Responsive Navigation Links -->
             <!-- Primer Menú -->
             @php
-                $isEventosActive = request()->routeIs('eventos') || request()->routeIs('eventosActivos') || request()->routeIs('eventosDisponibles') || request()->routeIs('eventosFinalizados');
+                $isEventosActive = request()->routeIs('eventos.index') || request()->routeIs('eventosActivos') || request()->routeIs('eventosDisponibles') || request()->routeIs('eventosFinalizados');
             @endphp
+            <div id="MinieventosLink">
+                <div class="cursor-pointer ml-3 flex justify-between items-center" >
+                    <x-nav-link href="{{ route('eventos.index') }}" :active="$isEventosActive" class="border-b-0 letra_custom">
+                        <svg width="30" height="30" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg" class="stroke-current hover:stroke-gray-900">
+                            <g clip-path="url(#clip0_923_425)">
+                                <path d="M3.5 10.1333C3.33431 10.1333 3.2 9.99902 3.2 9.83333V3.5C3.2 3.33431 3.33431 3.2 3.5 3.2H8.16667C8.33235 3.2 8.46667 3.33431 8.46667 3.5V9.83333C8.46667 9.99902 8.33235 10.1333 8.16667 10.1333H3.5ZM3.5 16.8C3.33431 16.8 3.2 16.6657 3.2 16.5V13.5C3.2 13.3343 3.33431 13.2 3.5 13.2H8.16667C8.33235 13.2 8.46667 13.3343 8.46667 13.5V16.5C8.46667 16.6657 8.33235 16.8 8.16667 16.8H3.5ZM11.8333 16.8C11.6676 16.8 11.5333 16.6657 11.5333 16.5V10.1667C11.5333 10.001 11.6676 9.86667 11.8333 9.86667H16.5C16.6657 9.86667 16.8 10.001 16.8 10.1667V16.5C16.8 16.6657 16.6657 16.8 16.5 16.8H11.8333ZM11.5333 3.5C11.5333 3.33431 11.6676 3.2 11.8333 3.2H16.5C16.6657 3.2 16.8 3.33431 16.8 3.5V6.5C16.8 6.66569 16.6657 6.8 16.5 6.8H11.8333C11.6676 6.8 11.5333 6.66569 11.5333 6.5V3.5Z" stroke-width="1.4"/>
+                            </g>
+                            <defs>
+                                <clipPath id="clip0_923_425">
+                                    <rect width="20" height="20" fill="white"/>
+                                </clipPath>
+                            </defs>
+                        </svg>
+                    </x-nav-link>
+                </div>
+    
+                <!-- Menú Acordeón -->
+                <div class="{{ $isEventosActive ? 'block' : 'hidden' }} max-w-7xl mx-auto px-1 sm:px-1 lg:px-4 flex justify-center items-center" id="MinieventoContent">
+                    <!-- Lista de opciones del menú -->
+                    <ul class="flex flex-col items-center w-full">
+                        <li class="mb-2 {{request()->routeIs('eventosActivos') ? 'bg-gray-200' : '' }}">
+                            <x-nav-link href="{{ route('eventosActivos') }}" :active="request()->routeIs('eventosActivos')" class="border-b-0 letra_custom "><!--{{ request()->routeIs('eventosActivos') ? 'bg-gray-200' : '' }}-->
+                                <svg width="12" height="12" viewBox="0 0 8 8" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <circle cx="4" cy="4" r="3" stroke="#FFB946" stroke-width="2"/>
+                                </svg>
+                            </x-nav-link>
+                        </li>
+                        <li class="mb-2 {{request()->routeIs('eventosDisponibles') ? 'bg-gray-200' : '' }}">
+                            <x-nav-link href="{{ route('eventosDisponibles') }}" :active="request()->routeIs('eventosDisponibles')" class="border-b-0 letra_custom">
+                                <svg width="12" height="12" viewBox="0 0 8 8" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <circle cx="4" cy="4" r="3" stroke="#2ED47A" stroke-width="2"/>
+                                </svg>
+                            </x-nav-link>
+                        </li>
+                        <li class="mb-2 {{request()->routeIs('eventosFinalizados') ? 'bg-gray-200' : '' }}">
+                            <x-nav-link href="{{ route('eventosFinalizados') }}" :active="request()->routeIs('eventosFinalizados')" class="border-b-0 letra_custom">
+                                <svg width="12" height="12" viewBox="0 0 8 8" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <circle cx="4" cy="4" r="3" stroke="#F7685B" stroke-width="2"/>
+                                </svg>
+                            </x-nav-link>
+                        </li>
+                    </ul>
+                </div>
 
-            <div class="cursor-pointer ml-3 flex justify-between items-center" id="MinieventosLink">
-                <x-nav-link href="#" :active="$isEventosActive" class="border-b-0 letra_custom">
-                    <svg width="30" height="30" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg" class="stroke-current hover:stroke-gray-900">
-                        <g clip-path="url(#clip0_923_425)">
-                            <path d="M3.5 10.1333C3.33431 10.1333 3.2 9.99902 3.2 9.83333V3.5C3.2 3.33431 3.33431 3.2 3.5 3.2H8.16667C8.33235 3.2 8.46667 3.33431 8.46667 3.5V9.83333C8.46667 9.99902 8.33235 10.1333 8.16667 10.1333H3.5ZM3.5 16.8C3.33431 16.8 3.2 16.6657 3.2 16.5V13.5C3.2 13.3343 3.33431 13.2 3.5 13.2H8.16667C8.33235 13.2 8.46667 13.3343 8.46667 13.5V16.5C8.46667 16.6657 8.33235 16.8 8.16667 16.8H3.5ZM11.8333 16.8C11.6676 16.8 11.5333 16.6657 11.5333 16.5V10.1667C11.5333 10.001 11.6676 9.86667 11.8333 9.86667H16.5C16.6657 9.86667 16.8 10.001 16.8 10.1667V16.5C16.8 16.6657 16.6657 16.8 16.5 16.8H11.8333ZM11.5333 3.5C11.5333 3.33431 11.6676 3.2 11.8333 3.2H16.5C16.6657 3.2 16.8 3.33431 16.8 3.5V6.5C16.8 6.66569 16.6657 6.8 16.5 6.8H11.8333C11.6676 6.8 11.5333 6.66569 11.5333 6.5V3.5Z" stroke-width="1.4"/>
-                        </g>
-                        <defs>
-                            <clipPath id="clip0_923_425">
-                                <rect width="20" height="20" fill="white"/>
-                            </clipPath>
-                        </defs>
-                    </svg>
-                </x-nav-link>
-            </div>
-
-            <!-- Menú Acordeón -->
-            <div class="{{ $isEventosActive ? 'block' : 'hidden' }} max-w-7xl mx-auto px-1 sm:px-1 lg:px-4 flex justify-center items-center" id="MinieventoContent">
-                <!-- Lista de opciones del menú -->
-                <ul class="flex flex-col items-center w-full">
-                    <li class="mb-2 {{request()->routeIs('eventosActivos') ? 'bg-gray-200' : '' }}">
-                        <x-nav-link href="{{ route('eventosActivos') }}" :active="request()->routeIs('eventosActivos')" class="border-b-0 letra_custom "><!--{{ request()->routeIs('eventosActivos') ? 'bg-gray-200' : '' }}-->
-                            <svg width="12" height="12" viewBox="0 0 8 8" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                <circle cx="4" cy="4" r="3" stroke="#FFB946" stroke-width="2"/>
-                            </svg>
-                        </x-nav-link>
-                    </li>
-                    <li class="mb-2 {{request()->routeIs('eventosDisponibles') ? 'bg-gray-200' : '' }}">
-                        <x-nav-link href="{{ route('eventosDisponibles') }}" :active="request()->routeIs('eventosDisponibles')" class="border-b-0 letra_custom">
-                            <svg width="12" height="12" viewBox="0 0 8 8" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                <circle cx="4" cy="4" r="3" stroke="#2ED47A" stroke-width="2"/>
-                            </svg>
-                        </x-nav-link>
-                    </li>
-                    <li class="mb-2 {{request()->routeIs('eventosFinalizados') ? 'bg-gray-200' : '' }}">
-                        <x-nav-link href="{{ route('eventosFinalizados') }}" :active="request()->routeIs('eventosFinalizados')" class="border-b-0 letra_custom">
-                            <svg width="12" height="12" viewBox="0 0 8 8" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                <circle cx="4" cy="4" r="3" stroke="#F7685B" stroke-width="2"/>
-                            </svg>
-                        </x-nav-link>
-                    </li>
-                </ul>
             </div>
             <x-nav-link href="{{ route('empresas') }}" :active="request()->routeIs('empresas')" class="ml-3 border-b-0  letra_custom">
                 <svg width="30" height="30" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg" class="stroke-current hover:stroke-gray-900">
@@ -371,7 +390,6 @@
                 <div class="hidden" id="MinimenuContent">
                     <!-- Lista de opciones del menú -->
                     <ul>
-                            
                         <li>
                             <x-dropdown-link href="{{ route('profile.show') }}">
                             <svg width="20" height="20" viewBox="0 0 512 512" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns="http://www.w3.org/2000/svg" xmlns:svg="http://www.w3.org/2000/svg" class="text-gray-500" style="filter: hue-rotate(180deg) saturate(200%);">
@@ -420,7 +438,7 @@
     </div>
 </nav>
 <script>
-    //Envetos
+    //configuracion
     const menuTitle = document.getElementById('menuTitle');
     const menuContent = document.getElementById('menuContent');
     const icon = menuTitle.querySelector('svg');
@@ -430,15 +448,38 @@
         // Rota el icono para indicar la dirección del despliegue
         icon.classList.toggle('rotate-90');
     });
-    //configuracion
+    //Envetos
     const menuEventos = document.getElementById('eventosLink');
     const eventoContent = document.getElementById('eventoContent');
     const iconE = menuEventos.querySelector('svg');
-    menuEventos.addEventListener('click', () => {
-        // Cambia la visibilidad del contenido del menú
-        eventoContent.classList.toggle('hidden');
-        // Rota el icono para indicar la dirección del despliegue
-        iconE.classList.toggle('rotate-90');
+    function showMenu() {
+        eventoContent.classList.remove('hidden');
+        iconE.classList.add('rotate-90');
+    }
+
+    // Función para ocultar el contenido del menú
+    function hideMenu() {
+        eventoContent.classList.add('hidden');
+        iconE.classList.remove('rotate-90');
+    }
+
+    // Mostrar el menú cuando el ratón esté sobre el enlace o el contenido
+    menuEventos.addEventListener('mouseover', showMenu);
+    eventoContent.addEventListener('mouseover', showMenu);
+
+    // Ocultar el menú cuando el ratón salga del enlace o el contenido
+    menuEventos.addEventListener('mouseout', (event) => {
+        // Solo ocultar si el ratón no está entrando al contenido del menú
+        if (!eventoContent.contains(event.relatedTarget)) {
+            hideMenu();
+        }
+    });
+
+    eventoContent.addEventListener('mouseout', (event) => {
+        // Solo ocultar si el ratón no está entrando al enlace del menú
+        if (!menuEventos.contains(event.relatedTarget)) {
+            hideMenu();
+        }
     });
     //miniEventos
     const MinimenuTitle = document.getElementById('MinimenuTitle');
@@ -454,11 +495,34 @@
     const MinimenuEventos = document.getElementById('MinieventosLink');
     const MinieventoContent = document.getElementById('MinieventoContent');
     const MiniiconE = menuEventos.querySelector('svg');
-    MinimenuEventos.addEventListener('click', () => {
-        // Cambia la visibilidad del contenido del menú
-        MinieventoContent.classList.toggle('hidden');
-        // Rota el icono para indicar la dirección del despliegue
-        MiniiconE.classList.toggle('rotate-90');
+    function minishowMenu() {
+        MinieventoContent.classList.remove('hidden');
+        MiniiconE.classList.add('rotate-90');
+    }
+
+    // Función para ocultar el contenido del menú
+    function minihideMenu() {
+        MinieventoContent.classList.add('hidden');
+        MiniiconE.classList.remove('rotate-90');
+    }
+
+    // Mostrar el menú cuando el ratón esté sobre el enlace o el contenido
+    MinimenuEventos.addEventListener('mouseover', minishowMenu);
+    MinieventoContent.addEventListener('mouseover', minishowMenu);
+
+    // Ocultar el menú cuando el ratón salga del enlace o el contenido
+    MinimenuEventos.addEventListener('mouseout', (event) => {
+        // Solo ocultar si el ratón no está entrando al contenido del menú
+        if (!MinieventoContent.contains(event.relatedTarget)) {
+            minihideMenu();
+        }
+    });
+
+    MinieventoContent.addEventListener('mouseout', (event) => {
+        // Solo ocultar si el ratón no está entrando al enlace del menú
+        if (!MinimenuEventos.contains(event.relatedTarget)) {
+            minihideMenu();
+        }
     });
 
     

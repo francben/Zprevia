@@ -20,13 +20,12 @@ class EventosController extends Controller
     public function index()
     {
         $eventos = Event::all();
-        //  dd($eventos);
         return view('eventos.index', compact('eventos'));
     }
     public function activos()
     {
         $eventos = Event::where('active', true)->get();
-        session()->flash('success', 'Registro guardado correctamente.');
+        //session()->flash('success', 'Registro guardado correctamente.');
         return view('eventos.index', compact('eventos'));
         }
 
