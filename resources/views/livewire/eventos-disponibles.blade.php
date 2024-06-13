@@ -40,7 +40,7 @@
                 <div  class="card_eventos_wrapper">
                     <div wire:key="{{ $event->id }}" class="card_eventos_container flex items-center justify-between">
                         <div class="card_eventos_left flex items-center">
-                            <img id="logo" src="img/zprevia_logo.png" alt="Logo empresa" width="50" height="50" class="rounded-full">
+                            <img id="logo" src="{{$event->organizers->companies->logo}}" alt="Logo empresa" width="50" height="50" class="rounded-full">
                             <div class="ml-4">
                                 <div class="card_eventos_details flex flex-col">
                                     <p class="fecha_event" id="date">{{ \Carbon\Carbon::parse($event->date)->locale('es')->isoFormat('DD [de] MMMM [de] YYYY') }}</p>
@@ -53,7 +53,6 @@
                             <button type="submit" class="bg-green-500 text-white px-4 py-2 rounded-lg shadow-md">Participar</button>
                         </form>--}}
                         <x-button wire:click="verDetalleEvento({{$event}})">Ver evento</x-button>
-                        
                     </div>
                 </div>                    
             </div>
