@@ -31,8 +31,9 @@ class Event extends Model
     ];
 
 
-    public function organizer()
+    public function organizers()
     {
         return $this->belongsTo(Organizer::class, 'organizer');
     }
+
 }

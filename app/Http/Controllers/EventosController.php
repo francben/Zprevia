@@ -26,8 +26,8 @@ class EventosController extends Controller
     {
         $eventos = Event::where('active', true)->get();
         //session()->flash('success', 'Registro guardado correctamente.');
-        return view('eventos.index', compact('eventos'));
-        }
+        return view('eventos.activos', compact('eventos'));
+    }
 
     public function participantes($id)
     {
@@ -95,7 +95,7 @@ class EventosController extends Controller
     public function finalizados()
     {
         $eventosActivos = Event::where('active', false)->get();
-        return view('eventos.index', ['eventos' => $eventosActivos]);
+        return view('eventos.finalizados', ['eventos' => $eventosActivos]);
     }
     public function planificar($id)
     {

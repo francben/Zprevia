@@ -7,14 +7,16 @@
     "require": {
         "php": "^8.2",
         "doctrine/dbal": "^4.0",
+        "endroid/qr-code": "^5.0",
         "laravel/framework": "^11.9",
         "laravel/jetstream": "^5.1",
         "laravel/sanctum": "^4.0",
         "laravel/tinker": "^2.9",
         "laraveles/spanish": "^1.5",
-        "livewire/livewire": "^3.5",
+        "livewire/livewire": "^3.0",
         "nesbot/carbon": "^3.5",
-        "spatie/laravel-permission": "^6.7"
+        "spatie/laravel-permission": "^6.7",
+        "wire-elements/modal": "^2.0"
     },
     "require-dev": {
         "fakerphp/faker": "^1.23",

@@ -53,4 +53,8 @@ class Company extends Model
     {
         return $this->belongsTo(User::class, 'admin');
     }
+    public function organizers()
+    {
+        return $this->hasMany(Organizer::class);
+    }
 }

@@ -28,7 +28,7 @@ class Organizer extends Model
     }
 
     // Relación con el modelo Company
-    public function company()
+    public function companies()
     {
         return $this->belongsTo(Company::class, 'company');
     }

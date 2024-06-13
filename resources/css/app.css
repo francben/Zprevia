@@ -151,6 +151,9 @@
         width: 62px !important;
       }
     }
+    .altura-modal{
+      margin-top: 13%;
+    }
     .ajuste_imagen{
       width: 3rem;
       height: 3rem;

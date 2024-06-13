@@ -4,7 +4,7 @@
             <div class="overflow-hidden">
                 <!--Contenedor de la página-->
                 
-                <livewire:eventos-disponibles />
+                <livewire:eventos-finalizados />
             </div>
         </div>
     </div>
