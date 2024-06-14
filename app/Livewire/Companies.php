@@ -26,7 +26,7 @@ class Companies extends Component
     public $province;
     public $sector;
     public $logo;
-    public $cover,$eventid;
+    public $cover,$eventid,$percentageFilled;
 
     public $logoFile,$portfolioFile, $videoFile, $coverFile;
 
@@ -50,6 +50,31 @@ class Companies extends Component
             $this->sector = $company->sector;
             $this->logo = $company->logo;
             $this->cover = $company->cover;
+            
+            // Calcular el porcentaje de campos llenos
+            $fields = [
+                $this->eventid,
+                $this->name,
+                $this->email,
+                $this->telephone,
+                $this->cif,
+                $this->address,
+                $this->locality,
+                $this->province,
+                $this->sector,
+                $this->logo,
+                $this->cover
+            ];
+        
+            $filledFields = array_filter($fields, function($field) {
+                return !empty($field);
+            });
+        
+            $totalFields = count($fields);
+            $filledFieldsCount = count($filledFields);
+            $percentageFilled = ($filledFieldsCount / $totalFields) * 100;
+        
+            $this->percentageFilled =round($percentageFilled);
         }
     }
 

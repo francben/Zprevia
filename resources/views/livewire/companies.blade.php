@@ -11,9 +11,9 @@
                                 <h1 class="text-xl font-bold">Datos de Empresa</h1>
                                 <div class="flex items-center flex-col">
                                     <div class="w-full h-2 bg-gray-200 rounded-full overflow-hidden" style="width: 250px;">
-                                        <div class="bg-green-500 h-full" style="width: 80%;"></div>
+                                        <div class="bg-green-500 h-full" style="width:{{$percentageFilled}}%;"></div>
                                     </div>
-                                    <span class="text-black mt-2">80% completo</span>
+                                    <span class="text-black mt-2">{{$percentageFilled}}% completo</span>
                                 </div>
                             </div>
                         </div>
@@ -232,7 +232,11 @@
                                     <div class="" id="banner">
                                         <div class="logo_pincipal">
                                             <div class=" justify-center">
-                                            <img src="{{ asset('storage/' . $logo) }}" alt="Icon" class="rounded-full h-14 w-14 object-cover">
+                                                <div class="flex items-center justify-between mb-4">
+                                                    <div class="flex items-center">
+                                                        <img src="{{ asset('storage/' . $logo) }}" alt="Icon" class="rounded-full h-14 w-14 object-cover">
+                                                    </div>
+                                                </div>
                                                <!-- <button class="relative bottom-10 right-0 bg-white rounded-full p-2 shadow-lg">
                                                     <x-icon_edilogo/>
                                                 </button>-->
@@ -255,11 +259,11 @@
             </div>
             <x-modal-empresa name="ver-Evento">
                 <x-slot:body>
-                    <div class="text-gray-900 font-sans text-3xl font-black mb-4">Nuevo Representante de Empresa</div>
+                    <div class="text-gray-900 font-semibold text-lg	 font-black mb-4">Nuevo Representante de Empresa</div>
                         <form wire:submit.prevent="crear({{ $eventid}})">
-                            <div class="flex flex-col sm:col-span-2">
+                            <div class="flex flex-col sm:col-span-2 ">
                                 <dt class="text-sm font-medium leading-6 text-gray-900">DNI</dt>
-                                <x-input_empresa type="text" class="mt-1 block w-3/4"
+                                <x-input_create type="text" class="mt-1 block w-full w-full"
                                     autocomplete=""
                                     placeholder="057000000"
                                     value=""
@@ -269,7 +273,7 @@
                             </div>
                             <div class="flex flex-col sm:col-span-2">
                                 <dt class="text-sm font-medium leading-6 text-gray-900">Nombre</dt>
-                                <x-input_empresa type="text" class="mt-1 block w-3/4"
+                                <x-input_create type="text" class="mt-1 block flex-group w-full"
                                     autocomplete="off"
                                     placeholder="Nombre"
                                     value=""
@@ -279,7 +283,7 @@
                             </div>
                             <div class="flex flex-col sm:col-span-2">
                                 <dt class="text-sm font-medium leading-6 text-gray-900">Contraseña</dt>
-                                <x-input_empresa type="password" class="mt-1 block w-3/4"
+                                <x-input_create type="password" class="mt-1 block w-full"
                                     autocomplete=""
                                     placeholder="Contraseña"
                                     value=""
@@ -289,7 +293,7 @@
                             </div>
                             <div class="flex flex-col sm:col-span-2">
                                 <dt class="text-sm font-medium leading-6 text-gray-900">Email</dt>
-                                <x-input_empresa type="email" class="mt-1 block w-3/4"
+                                <x-input_create type="email" class="mt-1 block w-full"
                                     autocomplete=""
                                     placeholder="Email"
                                     value=""
@@ -299,7 +303,7 @@
                             </div>
                             <div class="flex flex-col sm:col-span-2">
                                 <dt class="text-sm font-medium leading-6 text-gray-900">Teléfono</dt>
-                                <x-input_empresa type="text" class="mt-1 block w-3/4"
+                                <x-input_create type="text" class="mt-1 block w-full"
                                     autocomplete=""
                                     placeholder="Teléfono"
                                     value=""
@@ -309,7 +313,7 @@
                             </div>
                             <div class="flex flex-col sm:col-span-2">
                                 <dt class="text-sm font-medium leading-6 text-gray-900">Rol en la Empresa</dt>
-                                <x-input_empresa type="text" class="mt-1 block w-3/4"
+                                <x-input_create type="text" class="mt-1 block w-full"
                                     autocomplete=""
                                     placeholder="Rol"
                                     value=""
