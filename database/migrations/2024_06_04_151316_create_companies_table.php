@@ -29,6 +29,7 @@ return new class extends Migration
             $table->tinyText('video')->nullable();
             $table->unsignedBigInteger('admin')->index('admin');
             $table->text('cover')->nullable();
+            $table->text('portafolio')->nullable();
         });
     }
 

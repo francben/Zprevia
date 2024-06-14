@@ -27,7 +27,11 @@ Route::middleware([
     Route::resource('eventos', EventosController::class);
 
     //empresas 
-    Route::get('/empresas', [CompanysController::class, 'index'])->name('empresas');
+    //Route::get('/empresas', [CompanysController::class, 'index'])->name('empresas');
+
+    Route::get('/empresas', function () {
+        return view('company.index');
+    })->name('empresas');
 
     Route::get('company/perfil',[CompanysController::class,'editar'])->name('company.perfil');
     Route::post('company/update/{id}', [CompanysController::class, 'update'])->name('company.update');
