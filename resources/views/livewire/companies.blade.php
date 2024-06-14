@@ -24,7 +24,7 @@
                                 <div class="grid grid-cols-2 gap-6 mt-6 ">
                                     <div class="flex items-center justify-between mb-4">
                                         <div class="flex items-center">
-                                            <img src="{{$logo}}" alt="Logo de Empresa" class="mr-2 rounded-full">
+                                            <img src="{{asset('storage/' . $logo)}}" alt="Logo de Empresa" class="rounded-full h-10 w-10 object-cover">
                                             <h2 class="text-xl font-semibold">{{$name}}</h2>
                                         </div>
                                     </div>
@@ -152,8 +152,8 @@
                                                     </p>
                                                     <x-icon_update/>
                                                 </div>
-                                                <input id="logoFile" type="file" class="hidden" wire:model="logoFile" wire:model.lazy="logoFile"/>
-                                            </label>
+                                                <input id="logoFile" type="file" class="hidden" wire:model="logoFile" accept="image/*" />
+                                                </label>
                                         </div>
                                     </div>
 
@@ -229,13 +229,13 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="card_eventos_img" id="banner">
+                                    <div class="" id="banner">
                                         <div class="logo_pincipal">
-                                            <div class="relative inline-block">
-                                                <img src="{{$cover}}" alt="Icon" class="w-26 h-26 rounded-full">
-                                                <button class="absolute bottom-0 right-0 bg-white rounded-full p-2 shadow-lg">
+                                            <div class=" justify-center">
+                                            <img src="{{ asset('storage/' . $logo) }}" alt="Icon" class="rounded-full h-14 w-14 object-cover">
+                                               <!-- <button class="relative bottom-10 right-0 bg-white rounded-full p-2 shadow-lg">
                                                     <x-icon_edilogo/>
-                                                </button>
+                                                </button>-->
                                             </div>
                                         </div>
                                     </div>
@@ -253,43 +253,77 @@
                         </div>
                 </div>
             </div>
-            <x-modal-evento name="ver-Evento">
-                
+            <x-modal-empresa name="ver-Evento">
                 <x-slot:body>
-                    <div class="text-gray-900 font-sans text-3xl font-black mb-4"></div>
-                    <div class="font-sans mt-2">
-                        <h1>Nuevo Representante de la empresa</h1>
+                    <div class="text-gray-900 font-sans text-3xl font-black mb-4">Nuevo Representante de Empresa</div>
+                        <form wire:submit.prevent="crear({{ $eventid}})">
+                            <div class="flex flex-col sm:col-span-2">
+                                <dt class="text-sm font-medium leading-6 text-gray-900">DNI</dt>
+                                <x-input_empresa type="text" class="mt-1 block w-3/4"
+                                    autocomplete=""
+                                    placeholder="057000000"
+                                    value=""
+                                    x-ref="identificacion"
+                                    wire:model="identificacion" />
+                                <x-input-error for="identificacion" class="mt-2" />
+                            </div>
+                            <div class="flex flex-col sm:col-span-2">
+                                <dt class="text-sm font-medium leading-6 text-gray-900">Nombre</dt>
+                                <x-input_empresa type="text" class="mt-1 block w-3/4"
+                                    autocomplete="off"
+                                    placeholder="Nombre"
+                                    value=""
+                                    x-ref=""
+                                    wire:model="nombre" />
+                                <x-input-error for="nombre" class="mt-2" />
+                            </div>
+                            <div class="flex flex-col sm:col-span-2">
+                                <dt class="text-sm font-medium leading-6 text-gray-900">Contraseña</dt>
+                                <x-input_empresa type="password" class="mt-1 block w-3/4"
+                                    autocomplete=""
+                                    placeholder="Contraseña"
+                                    value=""
+                                    x-ref="pasword"
+                                    wire:model="pasword" />
+                                <x-input-error for="pasword" class="mt-2" />
+                            </div>
+                            <div class="flex flex-col sm:col-span-2">
+                                <dt class="text-sm font-medium leading-6 text-gray-900">Email</dt>
+                                <x-input_empresa type="email" class="mt-1 block w-3/4"
+                                    autocomplete=""
+                                    placeholder="Email"
+                                    value=""
+                                    x-ref="correo"
+                                    wire:model="correo" />
+                                <x-input-error for="correo" class="mt-2" />
+                            </div>
+                            <div class="flex flex-col sm:col-span-2">
+                                <dt class="text-sm font-medium leading-6 text-gray-900">Teléfono</dt>
+                                <x-input_empresa type="text" class="mt-1 block w-3/4"
+                                    autocomplete=""
+                                    placeholder="Teléfono"
+                                    value=""
+                                    x-ref="telefono"
+                                    wire:model="telefono" />
+                                <x-input-error for="telefono" class="mt-2" />
+                            </div>
+                            <div class="flex flex-col sm:col-span-2">
+                                <dt class="text-sm font-medium leading-6 text-gray-900">Rol en la Empresa</dt>
+                                <x-input_empresa type="text" class="mt-1 block w-3/4"
+                                    autocomplete=""
+                                    placeholder="Rol"
+                                    value=""
+                                    x-ref="rol"
+                                    wire:model="rol" />
+                                <x-input-error for="rol" class="mt-2" />
+                            </div>
+                            <br>
+                            <div class="flex flex-col sm:col-span-2">
+                                <x-button wire:click="crear({{$eventid}})" class="w-full text-center">Nuevo Representante</x-button>
+                            </div>
+                        </form>
                     </div>
-                    <div class="grid grid-cols-2 sm:grid-cols-4 gap-4">
-                        <div class="col-span-2 sm:col-span-1">
-                            <div>
-                                
-                                
-                            </div>
-                            
-                        </div>
-                        <div class="col-span-2 sm:col-span-2">
-                            <div class="font-sans mt-2 font-black">
-                                
-                            </div>
-                            <div class="font-sans mt-2">
-                                <h4 class="font-sans text-gray-400 mr-3">Ubicacion:  <h4> 
-                            </div>
-                            <div class="flex items-center space-x-4">
-                               
-                            </div>
-                        </div>
-                        <div class="col-span-2 sm:col-span-1 flex flex-col justify-between">
-                            <div class="mb-4">
-                            </div>
-                            <div class="mt-auto">
-                                
-                            </div>
-                        </div>
-
-                    </div>
-                    
                 </x-slot>
-            </x-modal-evento>
+        </x-modal-empresa>
     </div>
 </div>

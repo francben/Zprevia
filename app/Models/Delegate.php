@@ -9,6 +9,8 @@ class Delegate extends Model
 {
     use HasFactory;
 
+    public $timestamps = false;
+    
     protected $table = 'delegates';
 
     protected $fillable = [

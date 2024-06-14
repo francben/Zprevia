@@ -31,7 +31,8 @@ class Company extends Model
         'logo',
         'video',
         'admin',
-        'cover'
+        'cover',
+        'portafolio' 
     ];
 
     // Especificar si la clave primaria es incremental

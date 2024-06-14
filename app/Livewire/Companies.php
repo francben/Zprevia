@@ -6,10 +6,12 @@ use Livewire\Component;
 
 use App\Models\Company;
 use App\Models\User;
+use App\Models\Delegate;
 use Carbon\Carbon;
 use Livewire\WithFileUploads;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Str;
+use Hash;
 
 class Companies extends Component
 {
@@ -27,6 +29,9 @@ class Companies extends Component
     public $cover,$eventid;
 
     public $logoFile,$portfolioFile, $videoFile, $coverFile;
+
+    public $identificacion,$nombre, $pasword, $correo, $telefono, $rol;
+
 
     public function mount()
     {
@@ -51,13 +56,12 @@ class Companies extends Component
     public function verDetalleEvento($id)
     {
         $company = Company::where('admin', Auth::id())->first();
-        
+
         $this->dispatch('open-modal', name : 'ver-Evento');
     }
 
     public function save()
     {
-        dd($this->logofile, $this->cover);
         $this->validate([
             'name' => 'required|string|max:255',
             'email' => 'required|email|max:255',
@@ -73,31 +77,36 @@ class Companies extends Component
             'videoFile' => 'nullable|mimes:mp4,mov,avi,wmv|max:10480', // 10MB Max
             'coverFile' => 'nullable|image|max:2048', // 2MB Max
         ]);
+       
+        $company = Company::where('admin', Auth::id())->first();
 
         if ($this->logoFile) {
-            $this->logo = $this->logoFile->store('logos-empresa', 'public');
-            dd($this->logo);
+            $companyFolder = 'logos-empresa/' . $company->id;
+            $this->logo = $this->logoFile->storeAs($companyFolder, $this->logoFile->hashName(), 'public');
+
         }
 
         if ($this->portfolioFile) {
-            $portfolioPath = $this->portfolioFile->store('portfolios-empresa', 'public');
-            dd($portfolioPath);
+            $companyFolder = 'portfolios-empresa/' . $company->id;
+            $this->logo = $this->logoFile->storeAs($companyFolder, $this->logoFile->hashName(), 'public');
 
         }
+            
 
         if ($this->videoFile) {
-            $videoPath = $this->videoFile->store('videos-empresa', 'public');
-            dd($videoPath);
+            $companyFolder = 'videos-empresa/' . $company->id;
+            $this->logo = $this->logoFile->storeAs($companyFolder, $this->logoFile->hashName(), 'public');
+
         }
 
         if ($this->coverFile) {
-            $coverPath = $this->coverFile->store('covers-empresa', 'public');
-            dd($coverPath);
+            $companyFolder = 'covers-empresa/' . $company->id;
+            $this->logo = $this->logoFile->storeAs($companyFolder, $this->logoFile->hashName(), 'public');
+
         }
 
 
 
-        $company = Company::where('admin', Auth::id())->first();
         $company->update([
             'name' => $this->name,
             'email' => $this->email,
@@ -108,11 +117,40 @@ class Companies extends Component
             'province' => $this->province,
             'sector' => $this->sector,
             'logo' => $this->logo,
-            'portfolio' => $portfolioPath ?? $this->company->portfolio,
-            'video' => $videoPath ?? $this->company->video,
-            'cover' => $coverPath ?? $this->company->cover,
+            
         ]);
 
+        session()->flash('message', 'Company details updated successfully.');
+    }
+
+    public function crear($id)
+    {
+
+        $this->validate([
+            'identificacion' => 'required|string|max:255',
+            'nombre' => 'required|string|max:255',
+            'pasword' => 'required|string|max:255',
+            'correo' => 'required|email|max:255|unique:users,email', 
+            'identificacion' => 'required|string|max:10|unique:delegates,dni', 
+            'telefono' => 'required|string|max:255',
+            'rol' => 'required|string|max:255',
+            
+        ]);
+        $company = Company::where('admin', Auth::id())->first();
+        $usernew =new User;
+            $usernew->name = $this->nombre;
+            $usernew->email = $this->correo;
+            $usernew->password = Hash::make($this->pasword);
+        if($usernew->save()){
+            $delegate = new Delegate;
+            $delegate->name = $this->nombre;
+            $delegate->company = $company->id;
+            $delegate->user = $usernew->id;
+            $delegate->telephone = $this->telefono;
+            $delegate->dni = $this->identificacion;
+            $delegate->position = $this->rol;
+            $delegate->save();
+        }
         session()->flash('message', 'Company details updated successfully.');
     }
 
