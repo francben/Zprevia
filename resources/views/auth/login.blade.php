@@ -6,7 +6,6 @@
         <h1 class="mb-1" style="font-family:Poppins, sans-serif;font-size:26px;font-weight:900;">{{ __('Hola!') }}</h1>
         <p class="mb-6" style="font-size:18px;">{{ __('Bienvenido de vuelta') }}</p>
 
-        <x-validation-errors class="mb-4" />
 
         @session('status')
             <div class="mb-4 font-medium text-sm text-green-600">
@@ -64,12 +63,12 @@
                 </div>
             </div>
             
-            <div class="block mt-4 mx-auto">
+            {{--<div class="block mt-4 mx-auto">
                 <button type="button" style="font-family:Poppins, sans-serif;font-size:14px;font-weight:600;" class="custom-button">
                     <i class="fab fa-google mr-2"></i>
                     {{ __('Iniciar Sesión con Google') }}
                 </button>
-            </div>
+            </div>--}}
 
         </form>
     </x-authentication-card>

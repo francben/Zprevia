@@ -5,28 +5,39 @@ namespace App\Livewire;
 use Livewire\Component;
 use Endroid\QrCode\Builder\Builder;
 use App\Models\Event;
+use Carbon\Carbon;
 
 class EventosDisponibles extends Component
 {
     public $eventos;
     public $organizador;
-    public Event $vent;
+    public $eventoSeleccionado;
     public $qrCode;
 
     public function verDetalleEvento(Event $event){
-        $this->$event = $event;
+        $this->eventoSeleccionado = $event;
+        $startDate = Carbon::parse($event->start_date);
+        $endDate = Carbon::parse($event->end_date); // Corrección aquí
+
+        if($startDate->isSameDay($endDate)) { // Uso de isSameDay para comparar fechas
+            $data = $event->name . "\nFecha: " . $startDate->locale('es')->isoFormat('DD [de] MMMM [del] YYYY') . "\nLocalidad: " . $event->locality . "\nUbicación: " . $event->place;
+        } else {
+            $data = $event->name . "\nFecha: " . $startDate->locale('es')->isoFormat('DD') . " al " . $endDate->locale('es')->isoFormat('DD [de] MMMM [de] YYYY') . "\nLocalidad: " . $event->locality . "\nUbicación: " . $event->place;
+        }
+
         $result = Builder::create()
-                ->data($event->name . ' - ' . $event->date)
+                ->data($data)
                 ->size(150)
-                ->margin(10)
+                ->margin(0)
                 ->build();
         $this->qrCode = $result->getDataUri();
         $this->dispatch('open-modal', name : 'ver-Evento');
     }
+
     
     public function render()
     {
-        $this->eventos = Event::with('organizers.companies')->get();
+        $this->eventos = Event::with('organizers.companies')->orderby('active','desc')->orderBy('start_date', 'asc')->get();
         return view('livewire.eventos-disponibles');
     }
 }

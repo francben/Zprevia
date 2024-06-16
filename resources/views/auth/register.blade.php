@@ -57,6 +57,13 @@
                         {{ __('Registrarme') }}
                     </x-button>
                 </div>
+                <div class="flex items-center justify-center mt-2">
+                    <div class="text-center">
+                        <a class="border-0-0 text-sm text-gris-400 hover:text-gray-900 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-verde-500 text-no-underline" href="{{ route('login') }}">
+                            {{ __('Iniciar Sesión') }}
+                        </a>
+                    </div>
+                </div>
             </div>
 
             <!-- Paso 2 -->
@@ -98,6 +105,16 @@
                     <x-label for="additional_info" value="{{ __('Additional Info') }}" style="display:none" />
                     <x-input style="font-family:Poppins, sans-serif;font-size:14px;" id="additional_info" class="border-gris-300 focus:border-gris-500 focus:ring-gris-500 rounded-md shadow-sm block w-full" type="text" name="rol_en_empresa" required placeholder="Rol de la Empresa"/>
                 </div>
+                <div class="mt-4">
+                    <x-label for="terms">
+                        <div class="flex items-center">
+                            <x-checkbox name="terms" id="terms" required />
+                            <div class="ms-2 text-xs">
+                                Aceptar las politicas de privacidad.
+                            </div>
+                        </div>
+                    </x-label>
+                </div>
 
                 @if (Laravel\Jetstream\Jetstream::hasTermsAndPrivacyPolicyFeature())
                     <div class="mt-4">
@@ -119,6 +136,13 @@
                     <x-button style="font-family:Poppins, sans-serif;font-weight:900;" class="flex w-full justify-center bg-verde-600 rounded-md text-white">
                         {{ __('Finalizar') }}
                     </x-button>
+                </div>
+                <div class="flex items-center justify-center mt-2">
+                    <div class="text-center">
+                        <a class="border-0-0 text-sm text-gris-400 hover:text-gray-900 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-verde-500 text-no-underline" href="{{ route('login') }}">
+                            {{ __('Cancelar') }}
+                        </a>
+                    </div>
                 </div>
             </div>
         </form>

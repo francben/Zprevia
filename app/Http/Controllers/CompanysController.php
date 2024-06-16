@@ -75,7 +75,7 @@ class CompanysController extends Controller
             'telephone' => 'required|string|max:30',
             'dni' => 'required|string|max:20',
             'rol_en_empresa' => 'required|string|max:255',
-            'photo' => 'nullable|image|max:1024',
+            'photo' => 'nullable|image|max:4096',
         ]);
         if($request->photo == null){
 

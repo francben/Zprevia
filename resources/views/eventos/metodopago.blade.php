@@ -32,20 +32,20 @@
 
             <form method="POST" action="{{ route('login') }}">
                 @csrf
-                <div class="block mt-4 mx-auto">
+                {{--<div class="block mt-4 mx-auto">
                     <x-button style="font-family:Poppins, sans-serif;font-weight:900;" class="flex w-full justify-center bg-verde-600 rounded-md text-white" >
                         {{ __('Pagar con Paypal') }}
                     </x-button>
                 </div>
                 <br>
-                <x-tarjeta-pago/>
+                <x-tarjeta-pago/>--}}
                 <div class="block mt-4 mx-auto">
                     <h5 style="font-family: Inter, sans-serif; font-weight: 700; font-size: 17px; color: #6c757d;">
                         {{ __('Email') }}
                     </h5>
                 </div>
                 <div class="relative">
-                    <x-input style="font-family:Poppins, sans-serif;font-size:14px; padding-left: 2.5rem;" id="email" class="border-gris-300 focus:border-gris-500 focus:ring-gris-500 rounded-md shadow-sm block mt-1 w-full pl-10" type="email" name="email" :value="old('email')" required autofocus autocomplete="username" placeholder=""/>
+                    <x-input style="font-family:Poppins, sans-serif;font-size:14px; padding-left: 2.5rem;" id="email" class="border-gris-300 focus:border-gris-500 focus:ring-gris-500 rounded-md shadow-sm block mt-1 w-full pl-10" type="email" name="email" :value="old('email')" required autofocus placeholder=""/>
                 </div>
 
                 <div class="block mt-4 mx-auto">
@@ -74,11 +74,11 @@
 
                 <div class="block mt-4 mx-auto">
                     <h5 style="font-family: Inter, sans-serif; font-weight: 700; font-size: 17px; color: #6c757d;">
-                        {{ __('Nombre de tarjeta') }}
+                        {{ __('Nombre en tarjeta') }}
                     </h5>
                 </div>
                 <div class="relative">
-                    <x-input style="font-family:Poppins, sans-serif;font-size:14px; padding-left: 2.5rem;" id="nametarjeta" class="border-gris-300 focus:border-gris-500 focus:ring-gris-500 rounded-md shadow-sm block mt-1 w-full pl-10" type="text" name="email" :value="old('')" required autofocus autocomplete="username" placeholder=""/>
+                    <x-input style="font-family:Poppins, sans-serif;font-size:14px; padding-left: 2.5rem;" id="nametarjeta" class="border-gris-300 focus:border-gris-500 focus:ring-gris-500 rounded-md shadow-sm block mt-1 w-full pl-10" type="text" name="email" :value="old('')" required placeholder=""/>
                 </div>
 
 

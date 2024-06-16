@@ -51,7 +51,7 @@ class EventosController extends Controller
         ->join('organizers', 'events.organizer', '=', 'organizers.id')
         ->join('companies', 'organizers.company', '=', 'companies.id')
         ->join('delegate_events', 'events.id', '=', 'delegate_events.event')
-        ->select('events.*','companies.profile as perfil','delegate_events.paid as pagado')
+        ->select('events.*','companies.logo','delegate_events.paid as pagado')
         ->where('events.id',$evento_actual->event)
         ->first();
         // Retornar la vista 'eventos.participantes' con los datos de los participantes

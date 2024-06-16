@@ -1,6 +1,6 @@
 <nav x-data="{ open: false }" class="bg-white ml-1 pt-2 w-full">
     <!-- Logo -->
-    <div class="max-w-7xl mx-auto px-2 flex justify-between items-center h-16">
+    <div class="ml-4 max-w-7xl mx-auto px-2 flex justify-between items-center h-16">
         <div class="flex items-center">
             <a href="{{ route('eventos.index') }}">
                 <x-application-mark class="block h-9 w-auto" />
@@ -29,7 +29,7 @@
 
     <!-- Navigation Links -->
     <div class="sm:block hidden max-w-7xl mx-auto px-2 justify-between h-16">
-        <div class="hidden sm:flex sm:flex-col sm:items-start ml-3 sm:space-y-4 sm:mt-4"id="eventosLink">
+        <div class="hidden sm:flex sm:flex-col sm:items-start ml-3 sm:space-y-4"id="eventosLink">
             <!-- Primer Menú -->
             @php
                 $isEventosActive = request()->routeIs('eventos.index') || request()->routeIs('eventosActivos') || request()->routeIs('eventosDisponibles') || request()->routeIs('eventosFinalizados');
@@ -108,7 +108,7 @@
                 </div>
             </x-nav-link>
         </div>
-        <div class="hidden sm:flex sm:flex-col sm:items-start ml-3 sm:space-y-4 sm:mt-4">
+        {{--<div class="hidden sm:flex sm:flex-col sm:items-start ml-3 sm:space-y-4 sm:mt-4">
             <!-- Tercer Menú -->
             <x-nav-link href="#" class="border-b-0  letra_custom">
                 <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg" class="stroke-current hover:stroke-gray-900">
@@ -127,7 +127,7 @@
                     {{ __('Mensajes') }}
                 </div>
             </x-nav-link>
-        </div>
+        </div>--}}
         <div class="hidden sm:flex sm:flex-col sm:items-start ml-3 sm:space-y-4 sm:mt-4">
             <!-- Cuarto Menú -->
             <x-nav-link href="#" class="border-b-0  letra_custom">
@@ -147,7 +147,7 @@
                 </div>
             </x-nav-link>
         </div>
-        <div class="hidden sm:flex sm:flex-col sm:items-start ml-3 sm:space-y-4 sm:mt-4">
+        {{--<div class="hidden sm:flex sm:flex-col sm:items-start ml-3 sm:space-y-4 sm:mt-4">
             <!-- Quinto Menú -->
             <x-nav-link href="#" class="border-b-0  letra_custom">
                 <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg" class="stroke-current hover:stroke-gray-900">
@@ -164,7 +164,7 @@
                     {{ __('Chat') }}
                 </div>
             </x-nav-link>
-        </div>
+        </div>--}}
         <div class="hidden sm:flex sm:flex-col sm:items-start ml-3 sm:space-y-4 sm:mt-4" id="AyudaLink">
             <!-- Sexto Menú -->
             @php
@@ -358,7 +358,7 @@
                     </defs>
                 </svg>
             </x-nav-link>
-            <x-nav-link href="#" class="ml-3 border-b-0  letra_custom">
+            {{--<x-nav-link href="#" class="ml-3 border-b-0  letra_custom">
                 <svg width="30" height="30" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg" class="stroke-current hover:stroke-gray-900">
                     <g clip-path="url(#clip0_971_412)">
                         <path d="M2.37508 5.00056V4.99998C2.37508 4.46534 2.80791 4.03331 3.33341 4.03331H16.6667C17.1968 4.03331 17.6334 4.46991 17.6334 4.99998V15C17.6334 15.53 17.1968 15.9666 16.6667 15.9666H3.33341C2.80343 15.9666 2.36689 15.5302 2.36675 15.0002C2.36675 15.0001 2.36675 15.0001 2.36675 15L2.37508 5.00056Z" stroke-width="1.4"/>
@@ -370,7 +370,7 @@
                         </clipPath>
                     </defs>
                 </svg>
-            </x-nav-link>
+            </x-nav-link>--}}
             <x-nav-link href="#" class="ml-3 border-b-0  letra_custom">
                 <svg width="30" height="30" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg" class="stroke-current hover:stroke-gray-900">
                     <g clip-path="url(#clip0_971_406)">
@@ -383,7 +383,7 @@
                     </defs>
                 </svg>
             </x-nav-link>
-            <x-nav-link href="#" class="ml-3 border-b-0  letra_custom">
+            {{--<x-nav-link href="#" class="ml-3 border-b-0  letra_custom">
                 <svg width="30" height="30" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg" class="stroke-current hover:stroke-gray-900">
                     <g clip-path="url(#clip0_971_400)">
                         <path d="M5.00008 14.3H4.71013L4.50511 14.505L2.36675 16.6434V3.33335C2.36675 2.80329 2.80335 2.36669 3.33342 2.36669H16.6668C17.1968 2.36669 17.6334 2.80329 17.6334 3.33335V13.3334C17.6334 13.8634 17.1968 14.3 16.6668 14.3H5.00008Z" stroke-width="1.4"/>
@@ -394,7 +394,7 @@
                         </clipPath>
                     </defs>
                 </svg>
-            </x-nav-link>
+            </x-nav-link>--}}
             <x-nav-link href="#" class="ml-3 border-b-0  letra_custom">
                 <svg width="30" height="30" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg" class="stroke-current hover:stroke-gray-900">
                     <g clip-path="url(#clip0_971_392)">

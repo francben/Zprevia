@@ -1,11 +1,13 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use Laravel\Fortify\Fortify;
 use App\Http\Controllers\RolController;
 use App\Http\Controllers\UsuarioController;
 use App\Http\Controllers\EventosController;
 use App\Http\Controllers\CompanysController;
 use App\Http\Controllers\AyudaController;
+use App\Http\Controllers\TurnosController;
 
 Route::redirect('/', '/eventos');
 
@@ -47,5 +49,8 @@ Route::middleware([
     Route::get('ayuda/guia', [AyudaController::class, 'guia'])->name('guia');
     Route::get('ayuda/politica', [AyudaController::class, 'politica'])->name('politica');
     Route::get('ayuda/aviso', [AyudaController::class, 'aviso'])->name('aviso');
+
+    //Turnos
+    Route::resource('turnos', TurnosController::class);
 });
 
