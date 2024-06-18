@@ -32,6 +32,10 @@ class Entrevista extends Model
     {
         return $this->belongsTo(Company::class, 'company_id');
     }
+    public function company_solicitante()
+    {
+        return $this->belongsTo(Company::class, 'company_solicitante_id');
+    }
 
     // Relación: Una entrevista pertenece a un representante
     public function representante()

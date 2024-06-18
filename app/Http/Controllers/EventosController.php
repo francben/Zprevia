@@ -96,32 +96,17 @@ class EventosController extends Controller
     }
     public function planificar($id)
     {
-        $participantes = DB::table('delegate_events')
-        ->join('delegates', 'delegate_events.delegate', '=', 'delegates.id')
-        ->join('companies', 'delegates.company', '=', 'companies.id')
-        ->join('events', 'delegate_events.event', '=', 'events.id')
-        ->join('organizers', 'events.organizer', '=', 'organizers.id')
-        ->select('companies.*','delegates.name as representante')
-        ->where('delegate_events.event', $id)
-        ->paginate(20);
-    
+        $usuario= Auth::user();
 
-        $usuario= Auth::id();
-
-        $delegate = Delegate::where('user', Auth::id())->first();
-
-        $evento_actual=Delegate_events::where('event',$id)->first();
-
-        $event = DB::table('events')
+        $event = $usuario->delegate->events->where('id', $id)->first();
+        /*$event = DB::table('events')
         ->join('organizers', 'events.organizer', '=', 'organizers.id')
         ->join('companies', 'organizers.company', '=', 'companies.id')
         ->select('events.*','companies.profile as perfil')
         ->where('events.id',$evento_actual->event)
-        ->first();
+        ->first();*/
         // Retornar la vista 'eventos.participantes' con los datos de los participantes
         return view('eventos.planificacion', [
-            'participantes' => $participantes,
-            'evento_actual' => $evento_actual,
             'event' => $event
         ]);
     }

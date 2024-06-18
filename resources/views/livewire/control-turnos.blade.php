@@ -21,7 +21,11 @@
                             <div @click="showInput = true" class="border p-1 pl-3 rounded w-full cursor-pointer flex justify-evenly  mr-4">
                                 <span>{{ $turn['time'] ?  \Carbon\Carbon::parse($turn['time'])->format('H:i') : 'Agregar Hora' }}</span>
                             </div>
-                            <button wire:click="deleteTurn({{ $dayIndex }}, {{ $turnIndex }})" class="text-red-500 ml-2 px-4"><i class="fa fa-trash"></i></button>
+                                @if($turn['estado'] == 0)    
+                                    <button wire:click="deleteTurn({{ $dayIndex }}, {{ $turnIndex }})" class="text-red-500 ml-2 px-4"><i class="fa fa-trash"></i></button>
+                                @else
+                                    <span class="text-green-500 ml-2 px-4"><i class="fa fa-check"></i></span>
+                                @endif
                         </div>
                         <div x-show="showInput" @click.away="showInput = false;" class="absolute z-10 bg-white border p-2 rounded shadow-md w-full">
                             <div class="flex items-baseline">

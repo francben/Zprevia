@@ -4,24 +4,34 @@ namespace App\Livewire;
 
 use Livewire\Component;
 use Illuminate\Support\Facades\DB;
+use Livewire\WithPagination;
 use App\Models\Delegate_events;
 use App\Models\Entrevista;
 use App\Models\Delegate;
 use App\Models\Event;
+use App\Models\Turn;
 
 class ParticipantesTable extends Component
 {
+    use WithPagination;
     public $event;
     public $user;
     public $participantes;
     public $evento_actual;
     public $evento_actual_id;
-    public $selectedOption = ''; // Opción seleccionada para ordenamiento
-
+    public $selectedOption = '';
+    public $turnos;
+    public $mesa;
+    public $selectedTurno;
+    public $selectedEntrevistaId;
+    protected $rules = [
+        'mesa' => 'required',
+        'selectedTurno' => 'required'
+    ];
     public function mount($id)
     {
-        $this->evento_actual_id = $id; 
-        
+        $this->evento_actual_id = $id;
+        $this->turnos = Turn::where('event', $id)->where('estado', 0)->get();
     }
 
     public function loadParticipantes($id)
@@ -73,20 +83,48 @@ class ParticipantesTable extends Component
         $this->loadParticipantes($this->evento_actual->event); // Recargar la lista de participantes con la nueva opción de ordenamiento
     }
 
+    public function selectEntrevista($id)
+    {
+        $this->selectedEntrevistaId = $id;
+        $entrevista = Entrevista::find($id);
+        $this->mesa = $entrevista->mesa;
+        $this->selectedTurno = $entrevista->turno->id ?? null;
+    }
+    
+    public function save()
+    {
+        $this->validate();
+
+        $entrevista = Entrevista::find($this->selectedEntrevistaId);
+        $entrevista->mesa = $this->mesa;
+        $entrevista->turno_id = $this->selectedTurno;
+        $entrevista->estado = 1; // Cambia el estado a 1
+        $entrevista->save();
+
+        $entrevista->turno->estado = 1;
+        $entrevista->turno->save();
+
+        // Recargar las entrevistas
+        $this->entrevistas = Entrevista::where('event_id', $this->evento_actual->id)
+            ->where('company_id', $this->evento_actual->organizers->companies->id )
+            ->with(['company', 'representante', 'turno', 'solicitante'])
+            ->paginate(10);
+
+        
+        $this->selectedEntrevistaId = null;
+        $this->dispatch('entrevistaSaved', 'Entrevista aceptada!');
+    }
+
     public function render()
     {
         $this->evento_actual = Event::with('organizers.companies')->find($this->evento_actual_id);
         $this->entrevistas = Entrevista::where('event_id', $this->evento_actual->id)
             ->where('company_id', $this->evento_actual->organizers->companies->id )
             ->with(['company', 'representante', 'turno', 'solicitante'])
-            ->get();
-        //dd($this->entrevistas[0]->representante);
-        //$this->loadParticipantes($id);
-        // Convertir los datos a array antes de pasarlos a la vista
+            ->paginate(10);
+
         return view('livewire.participantes-table', [
             'entrevistas' => $this->entrevistas,
-            //'evento_actual' => $this->evento_actual->toArray(),
-            //'event' => $this->event->toArray(),
         ]);
     }
 }

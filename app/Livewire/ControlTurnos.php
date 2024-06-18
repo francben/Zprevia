@@ -11,6 +11,7 @@ use Carbon\Carbon;
 class ControlTurnos extends Component
 {
     public $eventId;
+    public $companyId;
     public $showNoti;
     public $mensaje = "";
     public $days = [];
@@ -29,7 +30,7 @@ class ControlTurnos extends Component
         if($event->organizers->companies->admin != $user->id){
             return redirect()->route('eventos.index')->with('error', 'No tiene permiso!');
         }else{
-
+            $this->companyId = $event->organizers->companies->id;
             $startDate = Carbon::parse($event->start_date);
             $endDate = Carbon::parse($event->end_date);
     
@@ -98,6 +99,7 @@ class ControlTurnos extends Component
             $newTurn = Turn::create([
                 'time' => Carbon::parse($turnDate . ' ' . $turnTime),
                 'event' => $this->eventId,
+                'company_id' => $this->companyId,
                 'estado' => 0,
             ]);
             $this->days[$dayIndex]['turns'][$turnIndex]['editing'] = true;

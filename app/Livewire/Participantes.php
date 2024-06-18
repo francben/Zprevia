@@ -55,7 +55,6 @@ class Participantes extends Component
             'company_id' => $company_id,
             'company_solicitante_id' => $this->user->delegate->companies->id,
             'solicitante_id' => $this->user->delegate->id,
-            'mesa' => '',
             'estado' => 0,
         ]);
 
