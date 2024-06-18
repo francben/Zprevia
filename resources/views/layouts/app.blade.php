@@ -29,52 +29,54 @@
 
     <div class="flex h-screen">
         <!-- Menú lateral -->
-        <div class="contenedor_Menu h-full mr-1">
+        <div class="h-full mr-1">
             <!-- Contenido del menú aquí -->
             @livewire('navigation-menu')
         </div>
 
         <!-- Contenido principal -->
         <div class="h-full flex flex-col bg-gris-100 flex-1">
- <!-- Encabezado -->
-<header class="bg-white shadow" style="height: 72px;">
-    <div class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8 flex justify-between items-center">
-        <!-- Input de búsqueda -->
-        <div class="flex items-center w-full max-w-xl h-full">
-            <div class="relative w-full h-full">
-                <span class="absolute inset-y-0 left-0 flex items-center pl-3">
-                    <svg class="h-5 w-5 text-gray-400" fill="currentColor" viewBox="0 0 20 20">
-                        <path fill-rule="evenodd" d="M12.9 14.32a8 8 0 111.42-1.42l4.32 4.32-1.42 1.42-4.32-4.32zM8 14A6 6 0 108 2a6 6 0 000 12z" clip-rule="evenodd" />
-                    </svg>
-                </span>
-                <input type="search" class="block w-full h-full pl-10 pr-3 py-2 border-0 focus:outline-none focus:ring-0 focus:border-transparent sm:text-sm" placeholder="Busqueda" />
+        <!-- Encabezado -->
+        <header class="bg-white shadow" style="height: 72px;">
+            <div class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8 flex justify-between items-center">
+                <!-- Input de búsqueda -->
+                <div class="flex items-center w-full max-w-xl h-full">
+                    <div class="relative w-full h-full">
+                        @if (Request::is('eventos/*'))
+                        <span class="absolute inset-y-0 left-0 flex items-center pl-3">
+                            <svg class="h-5 w-5 text-gray-400" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd" d="M12.9 14.32a8 8 0 111.42-1.42l4.32 4.32-1.42 1.42-4.32-4.32zM8 14A6 6 0 108 2a6 6 0 000 12z" clip-rule="evenodd" />
+                            </svg>
+                        </span>
+                        <input type="search" class="block w-full h-full pl-10 pr-3 py-2 border-0 focus:outline-none focus:ring-0 focus:border-transparent sm:text-sm" placeholder="Busqueda" />
+                        @endif
+                    </div>
+                </div>
+                <!-- Icono de notificación -->
+                <div class="mr-1 relative">
+                    <button id="notification-button" class="bg-white p-1 rounded-full text-gray-500 hover:text-gray-700 border-0 focus:border-transparent focus:outline-none focus:ring-2 focus:ring-offset-2 relative">
+                        <span class="sr-only">Notificaciones</span>
+                        <!-- Heroicon name: bell -->
+                        <svg width="15.999999" height="19.500002" viewBox="0 0 15.999999 19.500002" fill="none" version="1.1" id="svg1" xmlns="http://www.w3.org/2000/svg" xmlns:svg="http://www.w3.org/2000/svg">
+                            <defs id="defs1" />
+                            <path d="M 15.5,15.7071 V 16 H 0.50000002 V 15.7071 L 2.35355,13.8536 2.5,13.7071 V 13.5 8.5000003 C 2.5,5.5943701 4.02219,3.2809201 6.6153,2.6665301 L 7,2.5753801 v -0.39538 -0.68 C 7,0.94614006 7.4461,0.50000006 8,0.50000006 c 0.5538999,0 0.9999999,0.44614 0.9999999,1.00000004 v 0.68 0.39506 l 0.3843,0.09138 C 11.9681,3.2807601 13.5,5.6048201 13.5,8.5000003 V 13.5 13.7071 l 0.1464,0.1465 z M 9.4134999,18 C 9.2060999,18.5806 8.6487999,19 8,19 7.3443,19 6.7907,18.5813 6.5854,18 Z" fill="#ffffff" stroke="#c2cfe0" id="path1" />
+                        </svg>
+                        <span id="notification-badge" class="absolute top-0 right-0 inline-block w-3 h-3 bg-red-600 rounded-full" style="display: {{ auth()->user()->unreadNotifications->count() > 0 ? 'inline-block' : 'none' }};"></span>
+                    </button>
+                    <!-- Menú desplegable de notificaciones -->
+                    <div id="notification-menu" class="origin-top-right absolute right-0 mt-2 w-48 rounded-md shadow-lg py-1 bg-white ring-1 ring-black ring-opacity-5 hidden"
+                        data-notifications="{{ auth()->user()->unreadNotifications->pluck('id') }}">
+                        <!-- Elementos de notificación se insertarán dinámicamente aquí -->
+                        @foreach(auth()->user()->unreadNotifications as $notification)
+                            <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">{{ $notification->data['message'] }}</a>
+                        @endforeach
+                        @if (auth()->user()->unreadNotifications->isEmpty())
+                            <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">No tienes nuevas notificaciones</a>
+                        @endif
+                    </div>
+                </div>
             </div>
-        </div>
-        <!-- Icono de notificación -->
-        <div class="mr-1 relative">
-            <button id="notification-button" class="bg-white p-1 rounded-full text-gray-500 hover:text-gray-700 border-0 focus:border-transparent focus:outline-none focus:ring-2 focus:ring-offset-2 relative">
-                <span class="sr-only">Notificaciones</span>
-                <!-- Heroicon name: bell -->
-                <svg width="15.999999" height="19.500002" viewBox="0 0 15.999999 19.500002" fill="none" version="1.1" id="svg1" xmlns="http://www.w3.org/2000/svg" xmlns:svg="http://www.w3.org/2000/svg">
-                    <defs id="defs1" />
-                    <path d="M 15.5,15.7071 V 16 H 0.50000002 V 15.7071 L 2.35355,13.8536 2.5,13.7071 V 13.5 8.5000003 C 2.5,5.5943701 4.02219,3.2809201 6.6153,2.6665301 L 7,2.5753801 v -0.39538 -0.68 C 7,0.94614006 7.4461,0.50000006 8,0.50000006 c 0.5538999,0 0.9999999,0.44614 0.9999999,1.00000004 v 0.68 0.39506 l 0.3843,0.09138 C 11.9681,3.2807601 13.5,5.6048201 13.5,8.5000003 V 13.5 13.7071 l 0.1464,0.1465 z M 9.4134999,18 C 9.2060999,18.5806 8.6487999,19 8,19 7.3443,19 6.7907,18.5813 6.5854,18 Z" fill="#ffffff" stroke="#c2cfe0" id="path1" />
-                </svg>
-                <span id="notification-badge" class="absolute top-0 right-0 inline-block w-3 h-3 bg-red-600 rounded-full" style="display: {{ auth()->user()->unreadNotifications->count() > 0 ? 'inline-block' : 'none' }};"></span>
-            </button>
-            <!-- Menú desplegable de notificaciones -->
-            <div id="notification-menu" class="origin-top-right absolute right-0 mt-2 w-48 rounded-md shadow-lg py-1 bg-white ring-1 ring-black ring-opacity-5 hidden"
-                data-notifications="{{ auth()->user()->unreadNotifications->pluck('id') }}">
-                <!-- Elementos de notificación se insertarán dinámicamente aquí -->
-                @foreach(auth()->user()->unreadNotifications as $notification)
-                    <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">{{ $notification->data['message'] }}</a>
-                @endforeach
-                @if (auth()->user()->unreadNotifications->isEmpty())
-                    <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">No tienes nuevas notificaciones</a>
-                @endif
-            </div>
-        </div>
-    </div>
-</header>
+        </header>
 
             <main class="flex-1 p-1 overflow-y-auto">
                 {{ $slot }}

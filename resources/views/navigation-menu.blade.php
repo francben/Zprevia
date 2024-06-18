@@ -9,7 +9,7 @@
     </div>
     <hr />
     <!-- Datos de Usuario -->
-    <div class="hidden max-w-7xl mx-auto justify-between items-center h-16 mt-4 ml-4 sm:flex sm:flex-col sm:items-start ml-3 sm:space-y-4 sm:mt-4">
+    <div class="hidden max-w-7xl mx-auto justify-between items-center h-16 mt-4 mx-4 sm:flex sm:flex-col sm:items-start sm:space-y-4 sm:mt-4">
         <div class=" flex items-center space-x-4">
             @if (Laravel\Jetstream\Jetstream::managesProfilePhotos())
                 <div class="rounded-full object-cover w-12 h-12">
