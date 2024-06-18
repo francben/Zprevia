@@ -34,10 +34,16 @@ class Event extends Model
     // maneja el tiempo
     public $timestamps = true;
 
-
+    // Relación; un evento tiene un organizardor
     public function organizers()
     {
         return $this->belongsTo(Organizer::class, 'organizer');
+    }
+    // Relación: Un evento puede tener varios delegados
+    public function delegates()
+    {
+        return $this->belongsToMany(Delegate::class, 'delegate_events', 'event', 'delegate')
+                    ->withPivot('paid'); // Pivot table y columnas adicionales
     }
 
 }

@@ -13,13 +13,15 @@ class Turn extends Model
 
     // Clave primaria
     protected $primaryKey = 'id';
-    
+
     // maneja el tiempo
     public $timestamps = true;
     // Campos que pueden ser asignados masivamente
     protected $fillable = [
         'time',
-        'event'
+        'event',
+        'company_id',
+        'estado'
     ];
 
 }

@@ -3,18 +3,17 @@
         <!--Contenedor de la página-->
         @foreach([$event] as $env)
             <div class=" pl-4 pr-3">
-            <div class="flex justify-between items-center mb-1">
-                <a href="{{ route('evento.participantes', ['id' => $env->id]) }}" class="btnreturn flex items-center space-x-2">
-                    <x-icon_back/>
-                    <h1 class="text-lg font-semibold">Planificación</h1>
-                </a>
-            </div>
-
+                <div class="flex justify-between items-center mb-1">
+                    <a href="{{ route('evento.participantes', ['id' => $env->id]) }}" class="btnreturn flex items-center space-x-2">
+                        <x-icon_back/>
+                        <h1 class="text-lg font-semibold">Planificación</h1>
+                    </a>
+                </div>
             </div>
             <div class="container mx-auto p-4">
                 <div class="bg-white shadow-lg p-0 flex">
                     <div class="w-1/2 ">
-                        <img src="{{ $env->banner }}" alt="Conecta Empresarios 2024" class="w-full h-full object-cover">
+                        <img src="{{ $env->banner }}" alt="{{$env->name}}" class="w-full h-full object-cover">
                     </div>
                     <div class="w-1/2 p-4 relative">
                         <div class=" top-4 right-4">

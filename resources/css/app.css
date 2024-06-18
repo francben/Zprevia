@@ -193,13 +193,13 @@
     overflow: hidden; /* Asegura que el contenido no se desborde */
   }
 
-  .card_eventos_img img {
+  /*.card_eventos_img img {
     width: 100%;
     height: auto;
     display: block;
-    object-fit: contain; /* Ajusta la imagen para que quepa dentro del contenedor sin recortarla */
-    border-radius: 10px; /* Mantiene el borde redondeado en la imagen */
-  }
+    object-fit: contain; 
+    border-radius: 10px;
+  }*/
 
     .header{
         display: flex;
@@ -249,7 +249,7 @@
     }
     .card_eventos_img{
         display: flex;
-        flex-direction: column;
+        /*flex-direction: column;*/
         justify-content: center;
         align-items: center;
     
@@ -536,6 +536,7 @@
 .shadow-lg {
   box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
 }
+
 
 .w-24 {
   width: 6rem;

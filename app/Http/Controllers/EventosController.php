@@ -31,6 +31,7 @@ class EventosController extends Controller
 
     public function participantes($id)
     {
+        $eventoID = $id;
         $participantes = DB::table('delegate_events')
         ->join('delegates', 'delegate_events.delegate', '=', 'delegates.id')
         ->join('companies', 'delegates.company', '=', 'companies.id')
@@ -55,11 +56,7 @@ class EventosController extends Controller
         ->where('events.id',$evento_actual->event)
         ->first();
         // Retornar la vista 'eventos.participantes' con los datos de los participantes
-        return view('eventos.participantes', [
-            'participantes' => $participantes,
-            'evento_actual' => $evento_actual,
-            'event' => $event
-        ]);
+        return view('eventos.participantes', compact('eventoID'));
     }
     
     public function participar($eventoId) {

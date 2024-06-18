@@ -52,5 +52,9 @@ Route::middleware([
 
     //Turnos
     Route::resource('turnos', TurnosController::class);
+
+    //Notificaciones
+    Route::post('/mark-as-read', [App\Http\Controllers\NotificationController::class, 'markAsRead'])->name('mark-as-read');
+
 });
 

@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('delegates', function (Blueprint $table) {
             $table->integer('id', true);
-            $table->char('dni', 9)->unique('dni');
+            $table->char('dni', 9)->nullable()->unique('dni');
             $table->tinyText('name');
             $table->unsignedBigInteger('user')->index('usuario_idx');
             $table->integer('company')->index('empresa_idx');

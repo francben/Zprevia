@@ -5,27 +5,23 @@ namespace App\Livewire;
 use Livewire\Component;
 use Illuminate\Support\Facades\DB;
 use App\Models\Delegate_events;
+use App\Models\Entrevista;
 use App\Models\Delegate;
 use App\Models\Event;
 
 class ParticipantesTable extends Component
 {
     public $event;
+    public $user;
     public $participantes;
     public $evento_actual;
+    public $evento_actual_id;
     public $selectedOption = ''; // Opción seleccionada para ordenamiento
 
     public function mount($id)
     {
-        $this->evento_actual = Delegate_events::where('event', $id)->first();
-
-        $this->event = Event::join('organizers', 'events.organizer', '=', 'organizers.id')
-                            ->join('companies', 'organizers.company', '=', 'companies.id')
-                            ->select('events.*', 'companies.profile as perfil')
-                            ->where('events.id', $this->evento_actual->event)
-                            ->first();
-
-        $this->loadParticipantes($id);
+        $this->evento_actual_id = $id; 
+        
     }
 
     public function loadParticipantes($id)
@@ -79,11 +75,18 @@ class ParticipantesTable extends Component
 
     public function render()
     {
+        $this->evento_actual = Event::with('organizers.companies')->find($this->evento_actual_id);
+        $this->entrevistas = Entrevista::where('event_id', $this->evento_actual->id)
+            ->where('company_id', $this->evento_actual->organizers->companies->id )
+            ->with(['company', 'representante', 'turno', 'solicitante'])
+            ->get();
+        //dd($this->entrevistas[0]->representante);
+        //$this->loadParticipantes($id);
         // Convertir los datos a array antes de pasarlos a la vista
         return view('livewire.participantes-table', [
-            'participantes' => $this->participantes->toArray(),
-            'evento_actual' => $this->evento_actual->toArray(),
-            'event' => $this->event->toArray(),
+            'entrevistas' => $this->entrevistas,
+            //'evento_actual' => $this->evento_actual->toArray(),
+            //'event' => $this->event->toArray(),
         ]);
     }
 }

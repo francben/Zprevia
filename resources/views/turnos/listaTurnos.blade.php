@@ -9,6 +9,10 @@
                 <h1 class="text-lg font-semibold">Turnos</h1>
             </div>
         </div>
-        @livewire('control-turnos', ['eventId' => $id])
+        <div class="container mx-auto pr-4 pl-4">
+            <div class="bg-white shadow-lg p-0 flex flex-col md:flex-row">
+                @livewire('control-turnos', ['eventId' => $id])
+            </div>
+        </div>
     </div>
 </x-app-layout>

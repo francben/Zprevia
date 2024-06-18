@@ -13,6 +13,12 @@ return new class extends Migration
     {
         Schema::table('turns', function (Blueprint $table) {
             $table->timestamps();
+            $table->string('estado')->nullable();
+            $table->integer('company_id')->index('empresa_idx');
+        });
+
+        Schema::table('turns', function (Blueprint $table) {
+            $table->foreign(['company_id'], 'company_ibfk_2')->references(['id'])->on('companies')->onUpdate('cascade')->onDelete('cascade');
         });
     }
 
@@ -25,6 +31,7 @@ return new class extends Migration
     {
         Schema::table('turns', function (Blueprint $table) {
             $table->dropTimestamps();
+            $table->dropColumn('estado');
         });
     }
 };

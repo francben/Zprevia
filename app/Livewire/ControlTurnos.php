@@ -4,6 +4,7 @@ namespace App\Livewire;
 
 use Livewire\Component;
 use App\Models\Event;
+use App\Models\Delegate;
 use App\Models\Turn;
 use Carbon\Carbon;
 
@@ -13,7 +14,7 @@ class ControlTurnos extends Component
     public $showNoti;
     public $mensaje = "";
     public $days = [];
-
+    
     public function mount($eventId)
     {
         $this->eventId = $eventId;
@@ -23,19 +24,25 @@ class ControlTurnos extends Component
 
     public function loadEventDays()
     {
-        $event = Event::find($this->eventId);
-        $startDate = Carbon::parse($event->start_date);
-        $endDate = Carbon::parse($event->end_date);
+        $user = auth()->user();
+        $event = Event::with('organizers.companies')->find($this->eventId);
+        if($event->organizers->companies->admin != $user->id){
+            return redirect()->route('eventos.index')->with('error', 'No tiene permiso!');
+        }else{
 
-        $this->days = [];
-        while ($startDate->lte($endDate)) {
-            $this->days[] = [
-                'date' => $startDate->toDateString(),
-                'turns' => []
-            ];
-            $startDate->addDay();
+            $startDate = Carbon::parse($event->start_date);
+            $endDate = Carbon::parse($event->end_date);
+    
+            $this->days = [];
+            while ($startDate->lte($endDate)) {
+                $this->days[] = [
+                    'date' => $startDate->toDateString(),
+                    'turns' => []
+                ];
+                $startDate->addDay();
+            }
+            $this->showNoti = false;
         }
-        $this->showNoti = false;
     }
 
     public function loadExistingTurns()
@@ -51,6 +58,7 @@ class ControlTurnos extends Component
                     $day['turns'][] = [
                         'id' => $turn->id,
                         'time' => $time,
+                        'estado' => $turn->estado,
                         'showInput' => false,
                         'editing' => true,
                     ];
@@ -65,6 +73,7 @@ class ControlTurnos extends Component
         $this->days[$dayIndex]['turns'][] = [
             'time' => '',
             'showInput' => true,
+            'estado' => 0,
             'editing' => false,
         ];
     }
@@ -89,6 +98,7 @@ class ControlTurnos extends Component
             $newTurn = Turn::create([
                 'time' => Carbon::parse($turnDate . ' ' . $turnTime),
                 'event' => $this->eventId,
+                'estado' => 0,
             ]);
             $this->days[$dayIndex]['turns'][$turnIndex]['editing'] = true;
             $this->days[$dayIndex]['turns'][$turnIndex]['id'] = $newTurn->id;
@@ -139,6 +149,7 @@ class ControlTurnos extends Component
                 Turn::create([
                     'event' => $this->eventId,
                     'time' => $day['date'] . ' ' . $turn['time'],
+                    'estado' => 0
                 ]);
             }
         }

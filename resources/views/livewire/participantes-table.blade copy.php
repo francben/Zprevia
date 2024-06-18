@@ -3,7 +3,7 @@
         <div class="grid grid-cols-1 gap-6 md:grid-cols-1">
             <div class="flex justify-between items-center p-4 rounded-lg">
                 <div class="text-base font-bold text-gray-900">
-                Total solicitudes: {{count($entrevistas)}}
+                Total: {{count($participantes)}}
                 </div>
                 <div class="flex space-x-4">
                     <div x-data="{ isOpen: false }" @click.away="isOpen = false">
@@ -33,39 +33,27 @@
                 <table class="min-w-full w-full table-auto divide-y divide-gray-200 white:divide-neutral-700">
                     <thead>
                         <tr>
-                            <th scope="col" class="px-3 py-3 text-start text-sm font-medium text-gray-500 uppercase white:text-neutral-500">
+                            <th scope="col" class="px-6 py-3 text-start text-sm font-medium text-gray-500 uppercase white:text-neutral-500">
                                 <x-icon_user />
                             </th>
-                            <th scope="col" class="px-3 py-3 text-start text-sm font-medium text-gray-500 uppercase white:text-neutral-500">Empresa</th>
-                            <th scope="col" class="px-3 py-3 text-start text-sm font-medium text-gray-500 uppercase white:text-neutral-500">Representante</th>
-                            <th scope="col" class="px-3 py-3 text-start text-sm font-medium text-gray-500 uppercase white:text-neutral-500">Solicitante</th>
-                            <th scope="col" class="px-3 py-3 text-start text-sm font-medium text-gray-500 uppercase white:text-neutral-500">Mesa</th>
-                            <th scope="col" class="px-3 py-3 text-start text-sm font-medium text-gray-500 uppercase white:text-neutral-500">Turno</th>
-                            <th scope="col" class="px-3 py-3 text-start text-sm font-medium text-gray-500 uppercase white:text-neutral-500">Editar</th>
+                            <th scope="col" class="px-6 py-3 text-start text-sm font-medium text-gray-500 uppercase white:text-neutral-500">Invitados</th>
+                            <th scope="col" class="px-6 py-3 text-start text-sm font-medium text-gray-500 uppercase white:text-neutral-500">Nombre</th>
+                            <th scope="col" class="px-6 py-3 text-start text-sm font-medium text-gray-500 uppercase white:text-neutral-500">Mesa</th>
+                            <th scope="col" class="px-6 py-3 text-start text-sm font-medium text-gray-500 uppercase white:text-neutral-500">Turno</th>
+                            <th scope="col" class="px-6 py-3 text-start text-sm font-medium text-gray-500 uppercase white:text-neutral-500">Editar</th>
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach($entrevistas as $entrevista)
+                        @foreach($participantes as $part)
                         <tr class="odd:bg-white even:bg-white-100 hover:bg-gray-100 white:odd:bg-neutral-800 white:even:bg-neutral-700">
                             <td class="px-4 py-4 whitespace-normal break-words text-xs font-medium text-blue-900 white:text-neutral">
-                                <img src="{{asset($entrevista->company->logo)}}" alt="Profile" class="rounded-full w-10 h-10">
+                                <img src="{{asset($part->profile)}}" alt="Profile" class="rounded-full w-10 h-10">
                             </td>
                             <td class="px-2 py-4 whitespace-normal break-words text-xs font-medium text-gray-800 white:text-neutral">
-                                {{$entrevista->company->name}}
+                                {{$part->name}}
                             </td>
                             <td class="px-2 py-4 whitespace-normal break-words text-xs text-gray-800 white:text-neutral">
-                                @if(isset($entrevista->representante->name))
-                                    {{$entrevista->representante->name}}
-                                @else
-                                    No asignado
-                                @endif
-                            </td>
-                            <td class="px-2 py-4 whitespace-normal break-words text-xs text-gray-800 white:text-neutral">
-                                @if(isset($entrevista->solicitante->name))
-                                    {{$entrevista->solicitante->companies->name}}
-                                @else
-                                    No asignado
-                                @endif
+                                {{$part->representante}}
                             </td>
                             <td class="px-4 py-4 whitespace-normal break-words text-xs text-gray-800 white:text-neutral">
                                 En proceso
@@ -83,7 +71,7 @@
             </div>
         </div>
         <div class="flex justify-center items-center mb-4">
-            <a href="{{ route('evento.participantes', ['id' => $evento_actual_id]) }}">
+            <a href="{{ route('evento.participantes', ['id' => $event->id]) }}">
                 <button class="inline-flex items-center px-6 py-3 bg-white-800 border border-gray rounded-full font-semibold text-base text-black tracking-widest hover:bg-dark-700 focus:bg-dark-700 active:bg-dark-900 focus:outline-none focus:ring-2 focus:ring-dark-500 focus:ring-offset-2 disabled:opacity-50 transition ease-in-out duration-150">Volver</button>
             </a>
         </div>

@@ -4,6 +4,7 @@ namespace App\Actions\Fortify;
 
 use App\Models\User;
 use App\Models\Company;
+use App\Models\Delegate;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\DB   ;
@@ -24,11 +25,12 @@ class CreateNewUser implements CreatesNewUsers
     return DB::transaction(function () use ($input) {
         try {
             // Log de entrada de datos
-            Log::info('Inicio del proceso de creación de usuario', ['input' => $input]);
+            //Log::info('Inicio del proceso de creación de usuario', ['input' => $input]);
 
             // Validación
             $validatedData = Validator::make($input, [
                 'name' => ['required', 'string', 'max:255'],
+                'name_company' => ['required', 'string', 'max:255'],
                 'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
                 'cif' => ['required', 'string', 'max:9', 'unique:companies'],
                 'sector' => ['required', 'string', 'max:255'],
@@ -43,7 +45,7 @@ class CreateNewUser implements CreatesNewUsers
             ])->validate();
 
             // Log después de la validación
-            Log::info('Datos validados correctamente', ['validatedData' => $validatedData]);
+            //Log::info('Datos validados correctamente', ['validatedData' => $validatedData]);
 
             // Creación del usuario
             $user = User::create([
@@ -53,12 +55,12 @@ class CreateNewUser implements CreatesNewUsers
             ]);
 
             // Log después de la creación del usuario
-            Log::info('Usuario creado correctamente', ['user' => $user]);
+            //Log::info('Usuario creado correctamente', ['user' => $user]);
 
             // Creación de la compañía
             $company = Company::create([
                 'cif' => $validatedData['cif'],
-                'name' => $validatedData['name'],
+                'name' => $validatedData['name_company'],
                 'sector' => $validatedData['sector'],
                 'address' => $validatedData['address'],
                 'telephone' => $validatedData['telefono'],
@@ -66,11 +68,18 @@ class CreateNewUser implements CreatesNewUsers
                 'province' => $validatedData['province'],
                 'email' => $validatedData['email'],
                 'admin' => $user->id,
-                'rol_en_empresa' => $validatedData['rol_en_empresa'],
             ]);
 
+            //creaciòn de delegado
+            $delegate = Delegate::create([
+                'name' => $user->name,
+                'user' => $user->id,
+                'company' => $company->id,
+                'position' => $validatedData['rol_en_empresa'],
+                ]);
+
             // Log después de la creación de la compañía
-            Log::info('Compañía creada correctamente', ['company' => $company]);
+            //Log::info('Compañía creada correctamente', ['company' => $company]);
 
             return $user;
         } catch (\Exception $e) {

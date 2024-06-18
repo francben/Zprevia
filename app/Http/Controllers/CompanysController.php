@@ -67,7 +67,6 @@ class CompanysController extends Controller
     public function update(Request $request, string $id)
     {
         $user = User::findOrFail($id);
-        $company=Company::where('admin',$user->id)->first();
 
         $data = $request->validate([
             'name' => 'required|string|max:255',
@@ -93,6 +92,7 @@ class CompanysController extends Controller
                         'public'
                     );
                     $user->profile_photo_path = 'profile/' . $user->id . '/' . $randomFileName;
+                    $user->delegate->photo = 'profile/' . $user->id . '/' . $randomFileName;
                     $user->save();
                     $request->photo = $path;
                 } catch (Exception $e) {
@@ -105,14 +105,14 @@ class CompanysController extends Controller
         $user->email=$request->email;
         if($request->photo){
             $user->profile_photo_path=$request->photo;
+            $user->delegate->photo=$request->photo;
         }
         $user->update();
 
-        $company->dni=$request->dni;
-        $company->telephone=$request->telephone;
-        $company->dni=$request->dni;
-        $company->rol_en_empresa=$request->rol_en_empresa;
-        $company->update();
+        $user->delegate->dni=$request->dni;
+        $user->delegate->telephone=$request->telephone;
+        $user->delegate->position=$request->rol_en_empresa;
+        $user->delegate->update();
 
         return redirect()->route('company.perfil')->with('success', 'Perfil actualizado correctamente.');
 

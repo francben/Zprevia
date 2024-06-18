@@ -54,8 +54,24 @@ class Company extends Model
     {
         return $this->belongsTo(User::class, 'admin');
     }
+    // Relación: Una compañía puede tener un organizador
     public function organizers()
     {
         return $this->hasMany(Organizer::class);
+    }
+    // Relación: Una compañía puede tener varios delegados
+    public function delegates()
+    {
+        return $this->hasMany(Delegate::class, 'company_id', 'id');
+    }
+    // Relación: Una compañía puede tener varios turnos
+    public function turnos()
+    {
+        return $this->hasMany(Turn::class, 'company_id', 'id');
+    }
+    // Relación: Una compañía puede tener varias solicitudes de entrevistas
+    public function entrevistas()
+    {
+        return $this->hasMany(Entrevista::class, 'company_id');
     }
 }

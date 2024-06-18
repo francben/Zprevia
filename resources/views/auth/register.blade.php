@@ -25,7 +25,7 @@
                     <span class="absolute inset-y-0 left-0 flex items-center pl-3" style="padding: 13px;">
                         <i class="fa-solid fa-user text-gris-400"></i>
                     </span>
-                    <x-input style="font-family:Poppins, sans-serif;font-size:14px; padding-left: 2.5rem;" id="name" class="border-gris-300 focus:border-gris-500 focus:ring-gris-500 rounded-md shadow-sm block mt-1 w-full pl-10" type="text" name="name" :value="old('name')" required autofocus autocomplete="name" placeholder="Nombre de la Empresa"/>
+                    <x-input style="font-family:Poppins, sans-serif;font-size:14px; padding-left: 2.5rem;" id="name_company" class="border-gris-300 focus:border-gris-500 focus:ring-gris-500 rounded-md shadow-sm block mt-1 w-full pl-10" type="text" name="name_company" :value="old('name_company')" required autofocus autocomplete="name_company" placeholder="Nombre de la Empresa"/>
                 </div>
 
                 <div class="relative my-4">
@@ -95,15 +95,15 @@
                 </div>
                 <div class="mt-4">
                     <x-label for="additional_info" value="{{ __('Additional Info') }}" style="display:none" />
-                    <x-input style="font-family:Poppins, sans-serif;font-size:14px;" id="additional_info" class="border-gris-300 focus:border-gris-500 focus:ring-gris-500 rounded-md shadow-sm block w-full" type="text" name="name" required placeholder="Nombre"/>
-                </div>
-                <div class="mt-4">
-                    <x-label for="additional_info" value="{{ __('Additional Info') }}" style="display:none" />
                     <x-input style="font-family:Poppins, sans-serif;font-size:14px;" id="additional_info" class="border-gris-300 focus:border-gris-500 focus:ring-gris-500 rounded-md shadow-sm block w-full" type="text" name="telefono" required placeholder="Telefono"/>
                 </div>
                 <div class="mt-4">
                     <x-label for="additional_info" value="{{ __('Additional Info') }}" style="display:none" />
-                    <x-input style="font-family:Poppins, sans-serif;font-size:14px;" id="additional_info" class="border-gris-300 focus:border-gris-500 focus:ring-gris-500 rounded-md shadow-sm block w-full" type="text" name="rol_en_empresa" required placeholder="Rol de la Empresa"/>
+                    <x-input style="font-family:Poppins, sans-serif;font-size:14px;" id="additional_info" class="border-gris-300 focus:border-gris-500 focus:ring-gris-500 rounded-md shadow-sm block w-full" type="text" name="name" required placeholder="Nombre del representante"/>
+                </div>
+                <div class="mt-4">
+                    <x-label for="additional_info" value="{{ __('Additional Info') }}" style="display:none" />
+                    <x-input style="font-family:Poppins, sans-serif;font-size:14px;" id="additional_info" class="border-gris-300 focus:border-gris-500 focus:ring-gris-500 rounded-md shadow-sm block w-full" type="text" name="rol_en_empresa" required placeholder="Rol en la Empresa"/>
                 </div>
                 <div class="mt-4">
                     <x-label for="terms">
