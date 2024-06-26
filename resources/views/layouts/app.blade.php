@@ -18,6 +18,9 @@
     <!-- Incluye SweetAlert2 JS -->
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     
+    <!-- Incluye AlpineJS -->
+    <script src="//unpkg.com/alpinejs" defer></script>
+
     <!-- Scripts -->
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 
@@ -28,8 +31,32 @@
     <x-banner />
 
     <div class="flex h-screen">
+        <!-- Menú Mobile -->
+        <!-- Off-canvas menu for mobile, show/hide based on off-canvas menu state. -->
+        <div id="mobile_menu" class="hidden relative z-50 md:hidden" role="dialog" aria-modal="true">
+
+            <div class="fixed inset-0 bg-gray-900/80" aria-hidden="true"></div>
+
+            <div class="fixed inset-0 flex">
+            <div class="relative mr-16 flex w-full max-w-xs flex-1">
+                <div x-show="open" x-transition:enter="ease-in-out duration-300" x-transition:enter-start="opacity-0" x-transition:enter-end="opacity-100" x-transition:leave="ease-in-out duration-300" x-transition:leave-start="opacity-100" x-transition:leave-end="opacity-0" x-description="Close button, show/hide based on off-canvas menu state." class="absolute left-full top-0 flex w-16 justify-center pt-5">
+                  <button id="hide_mobile_menu" type="button" class="-m-2.5 p-2.5" >
+                    <span class="sr-only">Close sidebar</span>
+                    <svg class="h-6 w-6 text-white" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"></path>
+                    </svg>
+                  </button>
+                </div>
+
+                <!-- Sidebar component, swap this element with another sidebar if you like -->
+                <div class="flex grow flex-col gap-y-5 overflow-y-auto bg-white px-6 pb-4">
+                    @livewire('navigation-menu')
+                </div>
+            </div>
+            </div>
+        </div>
         <!-- Menú lateral -->
-        <div class="h-full mr-1">
+        <div class="hidden sm:block h-full mr-1">
             <!-- Contenido del menú aquí -->
             @livewire('navigation-menu')
         </div>
@@ -39,7 +66,14 @@
         <!-- Encabezado -->
         <header class="bg-white shadow" style="height: 72px;">
             <div class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8 flex justify-between items-center">
-                <!-- Input de búsqueda -->
+                <!-- Boton para abrir el menu en mobile -->
+                <button id="show_mobile_menu" type="button" class="block -m-2.5 p-2.5 text-gray-700 sm:hidden" @click="open = true">
+                    <span class="sr-only">Abrir menu</span>
+                    <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5"></path>
+                    </svg>
+                </button>   
+            <!-- Input de búsqueda -->
                 <div class="flex items-center w-full max-w-xl h-full">
                     <div class="relative w-full h-full">
                         @if (Request::is('eventos/*'))
@@ -88,6 +122,17 @@
     
     {{--@livewire('wire-elements-modal')--}}
     
+    <script>
+        document.getElementById('hide_mobile_menu').addEventListener('click', function() {
+            const div = document.getElementById('mobile_menu');
+            div.classList.toggle('hidden');
+        });
+        document.getElementById('show_mobile_menu').addEventListener('click', function() {
+            const div = document.getElementById('mobile_menu');
+            div.classList.toggle('hidden');
+        });
+    </script>
+
     <script>
     document.addEventListener('DOMContentLoaded', function () {
     const notificationButton = document.getElementById('notification-button');

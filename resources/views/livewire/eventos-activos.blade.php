@@ -1,13 +1,13 @@
 <div>
-    <div id="main-content" class="grid grid-cols-2 gap-6">
+    <div id="main-content" class="pb-4 grid grid-cols-1 md:grid-cols-2 gap-6">
         @foreach($eventos as $event)
             @if($event->active)
-                <div class="card_eventos bg-white sm:rounded-lg">
+                <div class="card_eventos bg-white rounded-lg">
             @else
-                <div class="card_eventos bg-gray sm:rounded-lg opacity-50">
+                <div class="card_eventos bg-gray rounded-lg opacity-50">
             @endif
                 <div class="card_eventos_wrapper">
-                    <div class="card_eventos_container flex items-center justify-between">
+                    <div class="card_eventos_container flex">
                         <div class="card_eventos_left flex items-center">
                             <div class="ml-4">
                                 <div class="card_eventos_details flex flex-col eventos-title items-center">
@@ -15,7 +15,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="card_eventos_left">
+                        <div class="sm:max-lg:py-2  card_eventos_left flex justify-center">
                             @if($event->active == 1)
                                 <span class="inline-flex items-center rounded-md bg-yellow-400 border border-yellow-400 px-4 py-1 font-medium text-white" style="font-size: 11px;">Activo</span>
                             @else
@@ -35,8 +35,8 @@
                     </div>
                 </div>
                 <div  class="card_eventos_wrapper">
-                    <div wire:key="{{ $event->id }}" class="card_eventos_container flex items-center justify-between">
-                        <div class="card_eventos_left flex items-center">
+                    <div wire:key="{{ $event->id }}" class="card_eventos_container flex flex-col lg:flex-row">
+                        <div class="py-4 lg:py-0 card_eventos_left flex items-center">
                             <img id="logo" src="{{asset($event->organizers->companies->logo)}}" alt="Logo empresa" width="50" height="50" class="rounded-full">
                             <div class="ml-4">
                                 <div class="card_eventos_details flex flex-col">

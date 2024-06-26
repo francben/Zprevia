@@ -119,21 +119,8 @@
       min-width: fit-content;
     }
 
-    .correo_vis{
-      display: block;
-    }
-    @media (max-width: 1015px) {
-      .correo_vis {
-          display: none;
-      }
-    }
     .logo_pincipal{
       display: block;
-    }
-    @media (max-width: 650px) {
-      .logo_pincipal {
-          display: none;
-      }
     }
     
     .contenedor_Menu {
