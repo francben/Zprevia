@@ -63,12 +63,12 @@
                 </div>
             </div>
             
-            {{--<div class="block mt-4 mx-auto">
-                <button type="button" style="font-family:Poppins, sans-serif;font-size:14px;font-weight:600;" class="custom-button">
+            <div class="block mt-4 mx-auto">
+                <a href="{{ route('auth.google') }}" type="button" style="font-family:Poppins, sans-serif;font-size:14px;font-weight:600;" class="custom-button">
                     <i class="fab fa-google mr-2"></i>
                     {{ __('Iniciar Sesión con Google') }}
-                </button>
-            </div>--}}
+            </a>
+            </div>
 
         </form>
     </x-authentication-card>

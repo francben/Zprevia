@@ -21,7 +21,7 @@ class RolController extends Controller
      */
     public function index()
     {
-        $roles = Rol::paginate(10);
+        $roles = Role::paginate(10);
         return view('roles.index', compact('roles'));
     }
 
@@ -40,7 +40,7 @@ class RolController extends Controller
     public function store(Request $request)
     {
         $this->validate($request, ['name' => 'required', 'permission' => 'required']);
-        $rol = Rol::create(['name' => $request->input('name')]);
+        $rol = Role::create(['name' => $request->input('name')]);
         $rol->syncPermissions($request->input('permission'));
 
         return redirect()->route('roles.index');

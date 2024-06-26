@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use Laravel\Fortify\Fortify;
 use App\Http\Controllers\RolController;
 use App\Http\Controllers\UsuarioController;
+use App\Http\Middleware\CheckAdminRole;
 use App\Http\Controllers\EventosController;
 use App\Http\Controllers\CompanysController;
 use App\Http\Controllers\AyudaController;
@@ -16,6 +17,12 @@ Route::middleware([
     config('jetstream.auth_session'),
     'verified',
 ])->group(function () {
+    // Rutas accesibles solo para administradores
+    Route::middleware([CheckAdminRole::class])->group(function () {
+        //Control de usuarios y roles   
+        Route::resource('roles', RolController::class);
+        Route::resource('usuarios', UsuarioController::class);
+    });
     //Eventos
    // Rutas específicas primero
     Route::get('eventos/activos', [EventosController::class, 'activos'])->name('eventosActivos');
@@ -56,5 +63,8 @@ Route::middleware([
     //Notificaciones
     Route::post('/mark-as-read', [App\Http\Controllers\NotificationController::class, 'markAsRead'])->name('mark-as-read');
 
+    //Inicio de sesión con google
+    Route::get('auth/google', [LoginController::class, 'redirectToGoogle'])->name('auth.google');
+    Route::get('auth/google/callback', [LoginController::class, 'handleGoogleCallback']);
 });
 
