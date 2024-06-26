@@ -19,9 +19,9 @@
                         </div>
                         <!--Cabecera--> 
                         <div class="flex min-h-screen">
-                            <div class="w-7/10 min-h-screen">
+                            <div class="w-7/10 min-h-screen pr-8">
                             <form wire:submit.prevent="save">
-                                <div class="grid grid-cols-2 gap-6 mt-6 ">
+                                <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 mt-6 ">
                                     <div class="flex items-center justify-between mb-4">
                                         <div class="flex items-center">
                                             <img src="{{asset('storage/' . $logo)}}" alt="Logo de Empresa" class="rounded-full h-10 w-10 object-cover">
@@ -30,8 +30,8 @@
                                     </div>
                                     <div class="flex items-center justify-between mb-4"><div></div></div>
                                     <!-- Detalles de la empresa -->
-                                    <div class="px-4 py-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
-                                        <div class="flex flex-col sm:col-span-2">
+                                    <div class="px-4 py-6">
+                                        <div class="flex flex-col">
                                             <label for="name" class="text-sm font-medium leading-6 text-gray-900">Nombre de la Empresa</label>
                                             <x-input_empresa id="name" type="text"
                                                 autocomplete="name"
@@ -44,8 +44,8 @@
                                         </div>
                                     </div>
 
-                                    <div class="px-4 py-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
-                                        <div class="flex flex-col sm:col-span-2">
+                                    <div class="px-4 py-6">
+                                        <div class="flex flex-col">
                                             <dt class="text-sm font-medium leading-6 text-gray-900">Email</dt>
                                             <x-input_empresa type="email" class="mt-1 block w-3/4"
                                                 autocomplete="email"
@@ -58,8 +58,8 @@
                                         </div>
                                     </div>
 
-                                    <div class="px-4 py-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
-                                        <div class="flex flex-col sm:col-span-2">
+                                    <div class="px-4 py-6 ">
+                                        <div class="flex flex-col">
                                             <dt class="text-sm font-medium leading-6 text-gray-900">Teléfono</dt>
                                             <x-input_empresa type="text" class="mt-1 block w-3/4"
                                                 autocomplete="telephone"
@@ -72,8 +72,8 @@
                                         </div>
                                     </div>
 
-                                    <div class="px-4 py-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
-                                        <div class="flex flex-col sm:col-span-2">
+                                    <div class="px-4 py-6 ">
+                                        <div class="flex flex-col">
                                             <dt class="text-sm font-medium leading-6 text-gray-900">CIF</dt>
                                             <x-input_empresa type="text" class="mt-1 block w-3/4"
                                                 autocomplete="cif"
@@ -86,8 +86,8 @@
                                         </div>
                                     </div>
 
-                                    <div class="px-4 py-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
-                                        <div class="flex flex-col sm:col-span-2">
+                                    <div class="px-4 py-6 ">
+                                        <div class="flex flex-col">
                                             <dt class="text-sm font-medium leading-6 text-gray-900">Dirección</dt>
                                             <x-input_empresa type="text" class="mt-1 block w-3/4"
                                                 autocomplete="address"
@@ -100,8 +100,8 @@
                                         </div>
                                     </div>
 
-                                    <div class="px-4 py-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
-                                        <div class="flex flex-col sm:col-span-2">
+                                    <div class="px-4 py-6 ">
+                                        <div class="flex flex-col ">
                                             <dt class="text-sm font-medium leading-6 text-gray-900">Localidad</dt>
                                             <x-input_empresa type="text" class="mt-1 block w-3/4"
                                                 autocomplete="locality"
@@ -114,8 +114,8 @@
                                         </div>
                                     </div>
 
-                                    <div class="px-4 py-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
-                                        <div class="flex flex-col sm:col-span-2">
+                                    <div class="px-4 py-6">
+                                        <div class="flex flex-col">
                                             <dt class="text-sm font-medium leading-6 text-gray-900">Provincia</dt>
                                             <x-input_empresa type="text" class="mt-1 block w-3/4"
                                                 autocomplete="province"
@@ -128,8 +128,8 @@
                                         </div>
                                     </div>
 
-                                    <div class="px-4 py-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
-                                        <div class="flex flex-col sm:col-span-2">
+                                    <div class="px-4 py-6">
+                                        <div class="flex flex-col">
                                             <dt class="text-sm font-medium leading-6 text-gray-900">Sector</dt>
                                             <x-input_empresa type="text" class="mt-1 block w-3/4"
                                                 autocomplete="sector"
@@ -142,7 +142,7 @@
                                         </div>
                                     </div>
 
-                                    <div>
+                                    <div class="px-4 py-6">
                                         <label class="block text-sm font-medium text-gray-700">Logotipo</label>
                                         <div class="flex items-center justify-center w-full">
                                             <label for="logoFile" class="flex flex-col items-center justify-center w-full border-2 border-gray-300 border-dashed rounded-lg cursor-pointer bg-gray-50 hover:bg-gray-100 gray:border-gray-600 gray:hover:border-gray-500 gray:hover:bg-gray-600">
@@ -155,9 +155,10 @@
                                                 <input id="logoFile" type="file" class="hidden" wire:model="logoFile" accept="image/*" />
                                                 </label>
                                         </div>
+                                        <p class="text-xs leading-5 text-gray-400 text-center">PNG, JPG, GIF hasta 4MB</p>
                                     </div>
 
-                                    <div>
+                                    <div class="px-4 py-6">
                                         <label class="block text-sm font-medium text-gray-700">Portafolio</label>
                                         <div class="flex items-center justify-center w-full">
                                             <label for="portfolioFile" class="flex flex-col items-center justify-center w-full border-2 border-gray-300 border-dashed rounded-lg cursor-pointer bg-gray-50 hover:bg-gray-100 gray:border-gray-600 gray:hover:border-gray-500 gray:hover:bg-gray-600">
@@ -167,12 +168,13 @@
                                                     </p>
                                                     <x-icon_update/>
                                                 </div>
-                                                <input id="portfolioFile" type="file" class="hidden" wire:model="portfolioFile" />
+                                                <input id="portfolioFile" type="file" class="hidden" wire:model="portfolioFile" accept="image/*, .pdf" />
                                             </label>
                                         </div>
+                                        <p class="text-xs leading-5 text-gray-400 text-center">PNG, JPG, PDF hasta 4MB</p>
                                     </div>
 
-                                    <div>
+                                    <div class="px-4 py-6">
                                         <label class="block text-sm font-medium text-gray-700">Video</label>
                                         <div class="flex items-center justify-center w-full">
                                             <label for="videoFile" class="flex flex-col items-center justify-center w-full border-2 border-gray-300 border-dashed rounded-lg cursor-pointer bg-gray-50 hover:bg-gray-100 gray:border-gray-600 gray:hover:border-gray-500 gray:hover:bg-gray-600">
@@ -182,12 +184,13 @@
                                                     </p>
                                                     <x-icon_update/>
                                                 </div>
-                                                <input id="videoFile" type="file" class="hidden" wire:model="videoFile" />
+                                                <input id="videoFile" type="file" class="hidden" wire:model="videoFile" accept="video/*" />
                                             </label>
                                         </div>
+                                        <p class="text-xs leading-5 text-gray-400 text-center">MP4, MOV, WebM hasta 15MB</p>
                                     </div>
 
-                                    <div>
+                                    <div class="px-4 py-6">
                                         <label class="block text-sm font-medium text-gray-700">Portada</label>
                                         <div class="flex items-center justify-center w-full">
                                             <label for="coverFile" class="flex flex-col items-center justify-center w-full border-2 border-gray-300 border-dashed rounded-lg cursor-pointer bg-gray-50 hover:bg-gray-100 gray:border-gray-600 gray:hover:border-gray-500 gray:hover:bg-gray-600">
@@ -197,18 +200,19 @@
                                                     </p>
                                                     <x-icon_update/>
                                                 </div>
-                                                <input id="coverFile" type="file" class="hidden" wire:model="coverFile" />
+                                                <input id="coverFile" type="file" class="hidden" wire:model="coverFile" accept="image/*" />
                                             </label>
                                         </div>
+                                        <p class="text-xs leading-5 text-gray-400 text-center">PNG, JPG, GIF hasta 4MB</p>
                                     </div>
                                 </div>
                             </form>
 
                             </div>
                             <div class=" flex-auto w-64">
-                                <div class="grid grid-cols-1 md:grid-cols-1 gap-6 mt-6">
+                                <div class="grid grid-cols-1 gap-6 mt-6">
                                     <div class="company-info">
-                                        <div class="text-right">
+                                        <div class="text-center">
                                             <x-button wire:click="verDetalleEvento({{$eventid}})" class="w-full text-center">Nuevo Representante</x-button>
 
                                         </div>
