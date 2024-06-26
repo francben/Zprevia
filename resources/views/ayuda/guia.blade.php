@@ -6,7 +6,7 @@
     @endphp
     <div class="py-5">
         <div class="max-w-8xl mx-auto sm:px-6 lg:px-8">
-            <div class="gap-4 font-sans w-full flex flex-wrap">
+            <div class="gap-4 font-sans w-full flex flex-wrap justify-center">
                 <x-button-ayuda href="{{ route('guia') }}"
                     @class([
                         'h-12 tracking-wide mb-4 sm:flex-grow-0 sm:basis-1/4',
