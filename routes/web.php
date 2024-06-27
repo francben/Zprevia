@@ -9,8 +9,12 @@ use App\Http\Controllers\EventosController;
 use App\Http\Controllers\CompanysController;
 use App\Http\Controllers\AyudaController;
 use App\Http\Controllers\TurnosController;
+use App\Http\Controllers\LoginController;
 
 Route::redirect('/', '/eventos');
+   //Inicio de sesión con google
+   Route::get('auth/google', [LoginController::class, 'redirectToGoogle'])->name('auth.google');
+   Route::get('auth/google/callback', [LoginController::class, 'handleGoogleCallback']);
 
 Route::middleware([
     'auth:sanctum',
@@ -63,8 +67,6 @@ Route::middleware([
     //Notificaciones
     Route::post('/mark-as-read', [App\Http\Controllers\NotificationController::class, 'markAsRead'])->name('mark-as-read');
 
-    //Inicio de sesión con google
-    Route::get('auth/google', [LoginController::class, 'redirectToGoogle'])->name('auth.google');
-    Route::get('auth/google/callback', [LoginController::class, 'handleGoogleCallback']);
+ 
 });
 
